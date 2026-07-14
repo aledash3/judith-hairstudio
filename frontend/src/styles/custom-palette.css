@@ -1,0 +1,444 @@
+:root {
+  /* Tonos Elegantes, Cálidos y Profesionales (Estilo Studio de Belleza) */
+  --bg-main: #fcfaf7;          /* Fondo suave crema para evitar fatiga visual */
+  --surface: #ffffff;          /* Superficies de tarjetas y contenedores */
+  --primary: #9e775d;          /* Café dorado/bronce suave elegante */
+  --primary-light: #dfd3c3;    /* Contraste pastel para fondos secundarios */
+  --dark: #2c2520;             /* Texto y títulos oscuros con alto contraste */
+  --accent: #c08552;           /* Color de acción para destacar botones o llamadas */
+  --success: #52b788;          /* Indicador positivo para Clientas VIP o éxitos */
+  --radius-sm: 6px;
+  --radius-lg: 14px;
+  --shadow: 0 10px 25px rgba(44, 37, 32, 0.05);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base Adaptativa */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   NAVEGACIÓN PREMIUM (UX: Accesibilidad con pulgares en móviles)
+   ========================================================================== */
+.navbar-custom {
+  background-color: var(--dark);
+  padding: 1.2rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-brand {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--primary-light);
+  text-transform: uppercase;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  color: #a8a099;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.nav-link:hover {
+  color: var(--surface);
+  background-color: rgba(223, 211, 195, 0.1);
+}
+
+.nav-link.active {
+  color: var(--dark);
+  background-color: var(--primary-light);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   CONTENEDOR Y MAQUETACIÓN DE CONTENIDO
+   ========================================================================== */
+.content-container {
+  padding: 2rem 1.5rem;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.page-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  position: relative;
+  color: var(--dark);
+}
+
+.page-title::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 4px;
+  background-color: var(--primary);
+  margin-top: 0.5rem;
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   DASHBOARD VISUAL (CU-03: Visualización de datos a un vistazo)
+   ========================================================================== */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.kpi-card {
+  background: var(--surface);
+  padding: 1.8rem 1.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(158, 119, 93, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: var(--transition);
+}
+
+.kpi-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(158, 119, 93, 0.1);
+}
+
+.kpi-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #7a7067;
+  margin-bottom: 0.5rem;
+}
+
+.kpi-value {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--dark);
+}
+
+/* Componentes de Listas de Servicios Estrella */
+.ranking-section {
+  background: var(--surface);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.section-title {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+}
+
+.ranking-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #f3effa;
+  transition: var(--transition);
+}
+
+.ranking-item:hover {
+  background-color: var(--bg-main);
+  border-radius: var(--radius-sm);
+}
+
+.ranking-position {
+  font-weight: 700;
+  color: var(--accent);
+  width: 40px;
+}
+
+.ranking-name {
+  flex: 1;
+  font-weight: 600;
+}
+
+.ranking-count {
+  background-color: var(--primary-light);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   FORMULARIOS FORMATEADOS (UX Inteligente)
+   ========================================================================== */
+.form-container {
+  background: var(--surface);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.form-title {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.form-group {
+  margin-bottom: 1.4rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #554a42;
+}
+
+.form-input, .form-select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border: 1.5px solid #e2dacd;
+  border-radius: var(--radius-sm);
+  background-color: #fff;
+  color: var(--dark);
+  box-sizing: border-box;
+  transition: var(--transition);
+}
+
+.form-input:focus, .form-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(192, 133, 82, 0.15);
+}
+
+.btn-submit {
+  background-color: var(--dark);
+  color: var(--surface);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border: none;
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  width: 100%;
+  transition: var(--transition);
+}
+
+.btn-submit:hover {
+  background-color: var(--accent);
+}
+
+/* Layout partido para pantallas grandes */
+.forms-split-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* ==========================================================================
+   PORTAFOLIO VISUAL COMPRIMIDO (CU-01 / RNF-03)
+   ========================================================================== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.gallery-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0,0,0,0.02);
+  transition: var(--transition);
+}
+
+.gallery-card:hover {
+  transform: translateY(-4px);
+}
+
+.badge-service {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background-color: rgba(44, 37, 20, 0.85);
+  color: var(--surface);
+  padding: 0.4rem 0.9rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+  z-index: 10;
+}
+
+.images-comparison {
+  display: flex;
+  background-color: #000;
+  gap: 2px; /* Pequeño separador visual de contraste */
+}
+
+.img-box {
+  flex: 1;
+  position: relative;
+}
+
+.img-box img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+.img-label {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--dark);
+  padding: 0.1rem 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.card-description {
+  padding: 1.2rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #554a42;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   TABLA DE FIDELIZACIÓN (CU-02: Vista limpia)
+   ========================================================================== */
+.table-wrapper {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.02);
+}
+
+.table-custom {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-custom th {
+  background-color: var(--dark);
+  color: var(--surface);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  padding: 1.2rem;
+  text-align: left;
+}
+
+.table-custom td {
+  padding: 1.2rem;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #f7f4f0;
+}
+
+.table-custom tr:last-child td {
+  border-bottom: none;
+}
+
+.badge-fidelidad {
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: inline-block;
+}
+
+.badge-fidelidad.frecuente {
+  background-color: #eef1f6;
+  color: #4a5568;
+}
+
+.badge-fidelidad.vip {
+  background-color: rgba(82, 183, 136, 0.15);
+  color: #1b4332;
+  border: 1px solid rgba(82, 183, 136, 0.3);
+}
+
+/* Estado de carga elegante */
+.loading-state {
+  text-align: center;
+  padding: 4rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+/* ==========================================================================
+   DISEÑO MOBILE-FIRST RESPONSIVO
+   ========================================================================== */
+@media (max-width: 768px) {
+  .navbar-custom {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  .navbar-menu {
+    width: 100%;
+    justify-content: space-around;
+  }
+  
+  .nav-link {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .content-container {
+    padding: 1.5rem 1rem;
+  }
+  
+  .kpi-grid {
+    grid-template-columns: 1fr 1fr; /* Dos por columna en pantallas medianas/móviles */
+    gap: 1rem;
+  }
+  
+  .img-box img {
+    height: 180px; /* Reducción de altura en móvil para no saturar scroll */
+  }
+}
+
+@media (max-width: 480px) {
+  .kpi-grid {
+    grid-template-columns: 1fr; /* Una sola columna en teléfonos compactos */
+  }
+}
