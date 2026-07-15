@@ -18,7 +18,9 @@ const API = axios.create({
 // ==========================================
 // SERVICIOS DEL DASHBOARD / INDICADORES
 // ==========================================
-export const getMetricas = () => API.get('/dashboard/metricas');
+export const getMetricas = (filtro = "mes") => {
+    return API.get(`/dashboard/metricas?filtro=${filtro}`);
+};
 
 // ==========================================
 // SERVICIOS DEL PORTAFOLIO

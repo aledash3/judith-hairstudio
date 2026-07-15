@@ -442,3 +442,45 @@ body {
     grid-template-columns: 1fr; /* Una sola columna en teléfonos compactos */
   }
 }
+
+.filter-buttons{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-bottom:25px;
+
+}
+
+.filter-buttons button{
+
+    padding:10px 18px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#ddd;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.filter-buttons button:hover{
+
+    background:#c99a6b;
+
+    color:white;
+
+}
+
+.filter-buttons button.active{
+
+    background:#c99a6b;
+
+    color:white;
+
+}

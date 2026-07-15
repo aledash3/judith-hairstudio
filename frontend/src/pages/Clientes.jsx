@@ -240,47 +240,42 @@ const Clientes = () => {
 
                                 <hr style={{ margin: '1.5rem 0' }} />
 
+{/* ... después de tu etiqueta <hr /> y el título Historial de Visitas ... */}
+
 <h3 style={{ marginBottom: '1rem' }}>
     Historial de Visitas
 </h3>
 
-{clienteSeleccionadoId.historialVisitas &&
-clienteSeleccionadoId.historialVisitas.length > 0 ? (
-
-    <table className="table-custom">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Servicio</th>
-                <th>Monto</th>
-                <th>Fecha</th>
-            </tr>
-        </thead>
-
-        <tbody>
-
-            {clienteSeleccionadoId.historialVisitas.map((visita,index)=>(
-
-                <tr key={index}>
-                    <td>{index+1}</td>
-                    <td>{visita.servicio}</td>
-                    <td>$ {Number(visita.monto).toFixed(2)}</td>
-                    <td>
-                        {new Date(visita.fecha).toLocaleDateString("es-EC")}
-                    </td>
+{clienteSeleccionadoId.historialVisitas && clienteSeleccionadoId.historialVisitas.length > 0 ? (
+    // AQUI APLICAMOS EL CONTENEDOR CON SCROLL HORIZONTAL
+    <div style={{ overflowX: 'auto', maxWidth: '100%', WebkitOverflowScrolling: 'touch' }}>
+        <table className="table-custom" style={{ minWidth: '400px' }}>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Servicio</th>
+                    <th>Monto</th>
+                    <th>Fecha</th>
                 </tr>
-
-            ))}
-
-        </tbody>
-
-    </table>
-
+            </thead>
+            <tbody>
+                {clienteSeleccionadoId.historialVisitas.map((visita, index) => (
+                    <tr key={index}>
+                        <td>{index + 1}</td>
+                        <td style={{ whiteSpace: 'nowrap' }}>{visita.servicio}</td>
+                        <td>$ {Number(visita.monto).toFixed(2)}</td>
+                        <td style={{ whiteSpace: 'nowrap' }}>
+                            {new Date(visita.fecha).toLocaleDateString("es-EC")}
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>
 ) : (
-
     <p>Este cliente aún no registra visitas.</p>
-
 )}
+
                             </div>
                         ) : (
                             <p>Cargando información...</p>
