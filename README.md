@@ -4,7 +4,7 @@
 ![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![](https://img.shields.io/badge/-646CFF?style=for-the-badge&logo=&logoColor=white)
 ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge)
 ![REST API](https://img.shields.io/badge/REST-API-blue?style=for-the-badge)
 
@@ -81,7 +81,7 @@ Desarrollar un sistema web que facilite la gestión administrativa de un salón 
 # 🏗 Arquitectura del Sistema
 
 ```text
-React + Vite
+React + 
       │
       │ Axios
       ▼
@@ -141,7 +141,7 @@ JudithHairStudio/
 │   ├── public/
 │   ├── src/
 │   ├── package.json
-│   ├── vite.config.js
+│   ├── .config.js
 │   └── index.html
 │
 ├── README.md
@@ -185,26 +185,39 @@ Categoría
 
 ---
 
-# 🚀 Instalación
+# 🚀 Despliegue
+
+A continuación se describen los pasos necesarios para ejecutar el sistema en un nuevo equipo.
+
+## Requisitos Previos
+
+Antes de comenzar, asegúrese de contar con:
+
+- Node.js 20 o superior
+- npm
+- Git
+- Una instancia de MongoDB (local o MongoDB Atlas)
+
+---
 
 ## 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/TU_USUARIO/judith-hairstudio-management.git
+git clone https://github.com/aledash3/sistema-gestion-salon-belleza.git
 ```
 
 ---
 
-## 2. Instalar dependencias del Backend
+## 2. Instalar dependencias
+
+### Backend
 
 ```bash
 cd backend
 npm install
 ```
 
----
-
-## 3. Instalar dependencias del Frontend
+### Frontend
 
 ```bash
 cd ../frontend
@@ -213,7 +226,7 @@ npm install
 
 ---
 
-## 4. Configurar variables de entorno
+## 3. Configurar las variables de entorno
 
 Crear el archivo:
 
@@ -221,12 +234,38 @@ Crear el archivo:
 backend/.env
 ```
 
-Ejemplo:
+Si utiliza **MongoDB Atlas**, configure una cadena de conexión similar a:
+
+```env
+PORT=5000
+MONGO_URI=mongodb+srv://usuario:contraseña@cluster.mongodb.net/JudithHairStudio
+```
+
+Si utiliza **MongoDB Community** de forma local:
 
 ```env
 PORT=5000
 MONGO_URI=mongodb://localhost:27017/JudithHairStudio
 ```
+
+> **Importante:** El archivo `.env` no se encuentra incluido en este repositorio por razones de seguridad.
+
+---
+
+## 4. Configurar MongoDB Atlas (si aplica)
+
+Si la base de datos se encuentra alojada en MongoDB Atlas:
+
+- Crear un usuario con permisos sobre la base de datos.
+- Configurar la cadena de conexión en el archivo `.env`.
+- Agregar la dirección IP del equipo en **Network Access**.
+- Para pruebas o desarrollo puede utilizar temporalmente:
+
+```text
+0.0.0.0/0
+```
+
+Esto permitirá conexiones desde cualquier dirección IP.
 
 ---
 
@@ -237,6 +276,12 @@ cd backend
 npm run dev
 ```
 
+El servidor iniciará por defecto en:
+
+```text
+http://localhost:5000
+```
+
 ---
 
 ## 6. Ejecutar el Frontend
@@ -245,6 +290,39 @@ npm run dev
 cd frontend
 npm run dev
 ```
+
+ mostrará una dirección similar a:
+
+```text
+http://localhost:3000
+```
+
+---
+
+## 7. Acceso desde otros dispositivos
+
+El frontend obtiene automáticamente la dirección IP del equipo donde se ejecuta el servidor mediante:
+
+```javascript
+window.location.hostname
+```
+
+Esto permite acceder al sistema desde otros dispositivos conectados a la misma red local sin modificar el código fuente.
+
+Únicamente es necesario que:
+
+- Backend y Frontend estén en ejecución.
+- Ambos dispositivos pertenezcan a la misma red.
+- El puerto **5000** se encuentre disponible para el Backend.
+- El puerto utilizado por **** se encuentre accesible para el Frontend.
+
+---
+
+## 8. Consideraciones
+
+- No subir el archivo `.env` al repositorio.
+- Verificar la conectividad con MongoDB antes de iniciar el sistema.
+- Para un entorno de producción se recomienda restringir el acceso a MongoDB Atlas únicamente a las direcciones IP autorizadas.
 
 ---
 
@@ -266,6 +344,39 @@ Durante el desarrollo del proyecto se implementaron conceptos de:
 
 ---
 
+# 📸 Capturas del Sistema
+
+## 📊 Dashboard
+
+![Dashboard](docs/dashboard.png)
+
+---
+
+## 👥 Gestión de Clientes
+
+![Clientes](docs/clientes.png)
+
+---
+
+## 📋 Detalle del Cliente
+
+![Detalle Cliente](docs/detalleclientes.png)
+
+---
+
+## 💇 Portafolio de Servicios
+
+![Portafolio](docs/portafolio.png)
+
+---
+
+# 📝 Nota
+
+Las capturas de pantalla y los registros mostrados en este repositorio corresponden a **datos ficticios** creados exclusivamente con fines demostrativos y académicos.
+
+No se utiliza información personal ni datos reales de clientes.
+
+---
 # 👨‍💻 Autor
 
 **David Alejandro Cruz Palacios**

@@ -282,7 +282,7 @@ const Portafolio = () => {
                                     style={{ width: '100%', padding: '0.6rem', background: '#e07a5f', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.9rem', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
                                     onClick={() => handleExportarFormatoVertical(item)}
                                 >
-                                    📱 Exportar para Historias (9:16)
+                                    📱 Descargar fotos para redes (Vertical)
                                 </button>
                             </div>
                         </div>
