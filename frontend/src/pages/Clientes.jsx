@@ -121,9 +121,9 @@ const Clientes = () => {
     };
 
     const obtenerBadgeFidelidad = (totalVisitas) => {
-        if (totalVisitas > 10) return { texto: '🔥 Cliente Fiel', clase: 'fiel' };
-        else if (totalVisitas >= 5) return { texto: '⭐ Cliente Frecuente', clase: 'frecuente' };
-        else return { texto: 'Cliente', clase: 'estandar' };
+        if (totalVisitas >= 10) return { texto: '⭐⭐⭐ Cliente Fiel', clase: 'fiel' };
+        else if (totalVisitas >= 5) return { texto: '⭐⭐ Cliente Frecuente', clase: 'frecuente' };
+        else return { texto: '⭐ Cliente', clase: 'estandar' };
     };
 
     return (
@@ -179,9 +179,9 @@ const Clientes = () => {
                             <button type="submit" className="btn-submit">Registrar Visita</button>
                         </form>
                     </div>
-
-                    <h2 className="table-title">Historial y Fidelización de Clientes</h2>
-                    <div className="table-wrapper">
+<h2 className="table-title">Historial y Fidelización de Clientes</h2>
+                    {/* AQUI COMIENZAN LOS CAMBIOS PARA DISPOSITIVOS MÓVILES */}
+                    <div className="table-wrapper" style={{ overflowX: 'auto', maxWidth: '100%' }}>
                         <table className="table-custom">
                             <thead>
                                 <tr>
@@ -197,11 +197,11 @@ const Clientes = () => {
                                     const badge = obtenerBadgeFidelidad(c.totalVisitas || 0);
                                     return (
                                         <tr key={c._id}>
-                                            <td>{c.nombre}</td>
+                                            <td style={{ whiteSpace: 'nowrap' }}>{c.nombre}</td>
                                             <td>{c.whatsapp}</td>
                                             <td>{c.totalVisitas || 0}</td>
-                                            <td><span className={`badge-fidelidad ${badge.clase}`}>{badge.texto}</span></td>
-                                            <td>
+                                            <td style={{ whiteSpace: 'nowrap' }}><span className={`badge-fidelidad ${badge.clase}`}>{badge.texto}</span></td>
+                                            <td style={{ whiteSpace: 'nowrap' }}>
                                                 <div style={{ display: 'flex', gap: '0.4rem', justifyContent: 'center' }}>
                                                     <button type="button" style={{ padding: '0.3rem 0.6rem', background: '#d4a373', border: 'none', borderRadius: '4px', cursor: 'pointer', color: 'white', fontWeight: 'bold' }} onClick={() => handleVerDetalle(c._id)}>👁️ Ver</button>
                                                     <button type="button" style={{ padding: '0.3rem 0.6rem', background: '#dfd3c3', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }} onClick={() => handleIniciarEdicionCliente(c)}>✏️ Editar</button>
