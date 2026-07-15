@@ -25,10 +25,16 @@ exports.obtenerMetricas = async (req, res) => {
         const ingresosTotales = agregacionVisitas[0]?.ingresosTotales || 0;
         const totalServicios = agregacionVisitas[0]?.totalServiciosPrestados || 0;
 
-        // 4. Servicios más solicitados (Ranking)
+        // 4. Servicios más solicitados (Ranking - Agrupado por categoría principal)
         const serviciosTop = await Cliente.aggregate([
             { $unwind: "$historialVisitas" },
-            { $group: { _id: "$historialVisitas.servicio", cantidad: { $sum: 1 } } },
+            { 
+                $group: { 
+                    // Tomamos el servicio, lo partimos por " - " y tomamos el primer elemento (índice 0)
+                    _id: { $arrayElemAt: [{ $split: ["$historialVisitas.servicio", " - "] }, 0] }, 
+                    cantidad: { $sum: 1 } 
+                } 
+            },
             { $sort: { cantidad: -1 } },
             { $limit: 3 }
         ]);
