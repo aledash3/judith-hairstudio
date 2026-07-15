@@ -55,7 +55,9 @@ const Dashboard = () => {
                             <div key={index} className="ranking-item">
                                 <span className="ranking-position">#{index + 1}</span>
                                 <span className="ranking-name">{srv._id}</span>
-                                <span className="ranking-count">{srv.cantidad} visitas</span>
+                                <span className="ranking-count">
+                                    {srv.cantidad} {srv.cantidad === 1 ? "visita" : "visitas"}
+                                </span>
                             </div>
                         ))
                     )}
