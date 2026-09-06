@@ -9,6 +9,7 @@ import {
 } from '../services/api';
 
 const Clientes = () => {
+    const telefonoEcuadorRegex = /^09\d{8}$/;
     const [clientes, setClientes] = useState([]);
     const [nombre, setNombre] = useState('');
     const [whatsapp, setWhatsapp] = useState('');
@@ -45,7 +46,7 @@ const Clientes = () => {
 
         setVista("detalle");
 
-    } catch (error) {
+    } catch {
 
         alert("No se pudo cargar el cliente.");
 
@@ -54,12 +55,32 @@ const Clientes = () => {
 };
     const handleGuardarCliente = async (e) => {
         e.preventDefault();
+        const nombreNormalizado = nombre.trim().replace(/\s+/g, ' ');
+        const whatsappNormalizado = whatsapp.trim();
+        const clienteDuplicado = clientes.some((cliente) => {
+            const mismoNombre = cliente.nombre.trim().toLowerCase() === nombreNormalizado.toLowerCase();
+            const mismoTelefono = cliente.whatsapp.trim() === whatsappNormalizado;
+            const esOtroCliente = cliente._id !== editandoClienteId;
+
+            return mismoNombre && mismoTelefono && esOtroCliente;
+        });
+
+        if (!telefonoEcuadorRegex.test(whatsappNormalizado)) {
+            alert("Corrige el numero: debe iniciar con 09 y tener exactamente 10 digitos. Ejemplo: 0995436787.");
+            return;
+        }
+
+        if (clienteDuplicado) {
+            alert("Este usuario ya se encuentra registrado.");
+            return;
+        }
+
         try {
             if (editandoClienteId) {
-                await actualizarCliente(editandoClienteId, { nombre, whatsapp });
+                await actualizarCliente(editandoClienteId, { nombre: nombreNormalizado, whatsapp: whatsappNormalizado });
                 alert("Cliente actualizado con éxito.");
             } else {
-                await registrarCliente({ nombre, whatsapp });
+                await registrarCliente({ nombre: nombreNormalizado, whatsapp: whatsappNormalizado });
                 alert("Cliente registrado con éxito.");
             }
             resetFormularioCliente();
@@ -82,7 +103,7 @@ const Clientes = () => {
                 alert("Cliente eliminado.");
                 if (editandoClienteId === id) resetFormularioCliente();
                 cargarClientes();
-            } catch (error) {
+            } catch {
                 alert("Error al eliminar cliente.");
             }
         }
@@ -97,16 +118,28 @@ const Clientes = () => {
     const handleAgregarVisita = async (e) => {
         e.preventDefault();
         const servicioCompleto = `${tipoServicio} - ${descripcion}`;
+        const montoNumerico = Number(monto);
+
+        if (!Number.isFinite(montoNumerico)) {
+            alert("Ingresa un monto valido.");
+            return;
+        }
+
+        if (montoNumerico < 0) {
+            alert("No se puede ingresar valores negativos en el ingreso del efectivo.");
+            return;
+        }
+
         try {
-            await agregarVisita(selectedCliente, { servicio: servicioCompleto, monto });
+            await agregarVisita(selectedCliente, { servicio: servicioCompleto, monto: montoNumerico });
             alert("Visita agregada correctamente.");
             setTipoServicio('');
             setDescripcion('');
             setMonto('');
             setSelectedCliente('');
             cargarClientes();
-        } catch (error) {
-            alert("Error al registrar visita.");
+            } catch (error) {
+                alert(error.response?.data?.errores?.join("\n") || error.response?.data?.mensaje || "Error al registrar visita.");
         }
     };
 
@@ -141,7 +174,7 @@ const Clientes = () => {
                             </div>
                             <div className="form-group">
                                 <label className="form-label">Número de WhatsApp:</label>
-                                <input type="text" className="form-input" value={whatsapp} onChange={e => setWhatsapp(e.target.value)} required />
+                                <input type="tel" inputMode="numeric" className="form-input" value={whatsapp} onChange={e => setWhatsapp(e.target.value.replace(/\D/g, '').slice(0, 10))} placeholder="Ej. 0995436787" pattern="09[0-9]{8}" title="Debe iniciar con 09 y tener exactamente 10 digitos" maxLength="10" required />
                             </div>
                             <div style={{ display: 'flex', gap: '0.5rem' }}>
                                 <button type="submit" className="btn-submit" style={{ flex: 2 }}>{editandoClienteId ? "Guardar Cambios" : "Dar de Alta"}</button>
@@ -174,7 +207,7 @@ const Clientes = () => {
                             </div>
                             <div className="form-group">
                                 <label className="form-label">Monto Cobrado ($):</label>
-                                <input type="number" className="form-input" value={monto} onChange={e => setMonto(e.target.value)} required />
+                                <input type="number" className="form-input" value={monto} onChange={e => setMonto(e.target.value)} min="0" max="100000" step="0.01" required />
                             </div>
                             <button type="submit" className="btn-submit">Registrar Visita</button>
                         </form>
