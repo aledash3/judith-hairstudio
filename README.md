@@ -1,396 +1,166 @@
-# 💇 Judith HairStudio - Sistema de Gestión y Fidelización de Clientes
+# Judith HairStudio
+
+Sistema web full stack para la gestion de clientes, visitas, ingresos y portafolio de un salon de belleza.
 
 ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![](https://img.shields.io/badge/-646CFF?style=for-the-badge&logo=&logoColor=white)
-![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge)
-![REST API](https://img.shields.io/badge/REST-API-blue?style=for-the-badge)
+![pnpm](https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=white)
 
----
+## Funcionalidades
 
-# 📌 Descripción General
+- Registro, edicion, consulta y eliminacion de clientes.
+- Identificador interno generado por MongoDB para cada cliente.
+- Validacion de nombres y telefonos ecuatorianos de exactamente 10 digitos.
+- Telefonos compartidos entre personas distintas, por ejemplo familiares.
+- Bloqueo de duplicados solo cuando coinciden nombre normalizado y telefono.
+- Historial de visitas con ingresos no negativos.
+- Dashboard con clientes, ingresos, servicios y portafolio.
+- Portafolio de transformaciones con imagenes optimizadas a WebP.
+- Exportacion de composiciones verticales para redes sociales.
 
-**Judith HairStudio** es una aplicación web Full Stack desarrollada con la arquitectura **MERN (MongoDB, Express.js, React y Node.js)**, diseñada para optimizar la administración de un salón de belleza.
-
-El sistema centraliza la gestión de clientes, el registro de visitas, el seguimiento de fidelización y la administración del portafolio de servicios, permitiendo mantener organizada la información del negocio mediante una interfaz moderna e intuitiva.
-
-El proyecto implementa una arquitectura basada en el patrón **MVC (Modelo-Vista-Controlador)** y una API REST para la comunicación entre el frontend y el backend.
-
----
-
-# 🎯 Objetivos
-
-## Objetivo General
-
-Desarrollar un sistema web que facilite la gestión administrativa de un salón de belleza mediante el registro de clientes, servicios y visitas, mejorando el control de la información y el seguimiento de la fidelización de los clientes.
-
-## Objetivos Específicos
-
-- Administrar el registro de clientes.
-- Registrar visitas y servicios realizados.
-- Llevar un historial completo de cada cliente.
-- Implementar indicadores de fidelización.
-- Administrar el portafolio de servicios del salón.
-- Mostrar indicadores generales mediante un dashboard.
-- Aplicar una arquitectura Full Stack utilizando tecnologías MERN.
-
----
-
-# ✨ Funcionalidades
-
-## 👥 Gestión de Clientes
-
-- Registro de nuevos clientes.
-- Actualización de información.
-- Eliminación de clientes.
-- Consulta del historial individual.
-- Visualización del total de visitas.
-
----
-
-## 💎 Fidelización
-
-- Registro de visitas.
-- Historial completo por cliente.
-- Conteo automático de visitas.
-- Clasificación de clientes según frecuencia.
-
----
-
-## 💇 Portafolio de Servicios
-
-- Registro de servicios.
-- Carga de imágenes.
-- Edición de información.
-- Eliminación de servicios.
-- Organización del portafolio.
-
----
-
-## 📊 Dashboard
-
-- Total de clientes registrados.
-- Total de servicios.
-- Indicadores generales.
-- Métricas de fidelización.
-
----
-
-# 🏗 Arquitectura del Sistema
+## Arquitectura
 
 ```text
-React + 
-      │
-      │ Axios
-      ▼
-API REST (Express.js)
-      │
-      ▼
-Controladores (MVC)
-      │
-      ▼
-MongoDB (Mongoose)
+React + Vite
+    |
+    | Axios / proxy de desarrollo
+    v
+API REST con Express
+    |
+    +-- Routers
+    +-- Validadores
+    +-- Controladores
+    +-- Servicios de negocio
+    +-- Modelos Mongoose
+    v
+MongoDB
 ```
 
----
+El backend separa rutas, validacion, controladores, servicios y modelos. El frontend consume la API mediante un cliente Axios centralizado.
 
-# 🛠 Tecnologías Utilizadas
+## Requisitos
 
-## Frontend
+- Node.js 20 o superior.
+- pnpm 11 o superior.
+- MongoDB local o MongoDB Atlas.
 
-- React
-- Vite
-- Axios
-- CSS
-
-## Backend
-
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- Multer
-
-## Herramientas
-
-- Git
-- GitHub
-- Visual Studio Code
-- Postman
-
----
-
-# 📂 Estructura del Proyecto
-
-```text
-JudithHairStudio/
-│
-├── backend/
-│   ├── config/
-│   ├── controllers/
-│   ├── models/
-│   ├── routers/
-│   ├── uploads/
-│   ├── package.json
-│   ├── server.js
-│   └── .env.example
-│
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   ├── package.json
-│   ├── .config.js
-│   └── index.html
-│
-├── README.md
-└── .gitignore
-```
-
----
-
-# 🗄 Modelo de Base de Datos
-
-## Cliente
-
-```text
-Nombre
-WhatsApp
-Historial de Visitas
-Total de Visitas
-Fecha de Registro
-```
-
----
-
-## Visita
-
-```text
-Servicio
-Monto
-Fecha
-```
-
----
-
-## Servicio del Portafolio
-
-```text
-Título
-Descripción
-Imagen
-Categoría
-```
-
----
-
-# 🚀 Despliegue
-
-A continuación se describen los pasos necesarios para ejecutar el sistema en un nuevo equipo.
-
-## Requisitos Previos
-
-Antes de comenzar, asegúrese de contar con:
-
-- Node.js 20 o superior
-- npm
-- Git
-- Una instancia de MongoDB (local o MongoDB Atlas)
-
----
-
-## 1. Clonar el repositorio
+## Instalacion
 
 ```bash
 git clone https://github.com/aledash3/sistema-gestion-salon-belleza.git
+cd sistema-gestion-salon-belleza
+pnpm install
 ```
 
----
-
-## 2. Instalar dependencias
-
-### Backend
-
-```bash
-cd backend
-npm install
-```
-
-### Frontend
-
-```bash
-cd ../frontend
-npm install
-```
-
----
-
-## 3. Configurar las variables de entorno
-
-Crear el archivo:
-
-```text
-backend/.env
-```
-
-Si utiliza **MongoDB Atlas**, configure una cadena de conexión similar a:
+Crear `backend/.env` a partir de `backend/.env.example`:
 
 ```env
 PORT=5000
-MONGO_URI=mongodb+srv://usuario:contraseña@cluster.mongodb.net/JudithHairStudio
+NODE_ENV=development
+CORS_ORIGIN=http://localhost:3000
+MONGO_URI=mongodb://localhost:27017/judith-hairstudio
 ```
 
-Si utiliza **MongoDB Community** de forma local:
+Para el frontend puede crearse `frontend/.env` desde `frontend/.env.example`:
 
 ```env
-PORT=5000
-MONGO_URI=mongodb://localhost:27017/JudithHairStudio
+VITE_API_URL=
 ```
 
-> **Importante:** El archivo `.env` no se encuentra incluido en este repositorio por razones de seguridad.
+En desarrollo se recomienda dejar `VITE_API_URL` vacia y utilizar el proxy de Vite. En produccion debe apuntar al origen publico de la API.
 
----
-
-## 4. Configurar MongoDB Atlas (si aplica)
-
-Si la base de datos se encuentra alojada en MongoDB Atlas:
-
-- Crear un usuario con permisos sobre la base de datos.
-- Configurar la cadena de conexión en el archivo `.env`.
-- Agregar la dirección IP del equipo en **Network Access**.
-- Para pruebas o desarrollo puede utilizar temporalmente:
-
-```text
-0.0.0.0/0
-```
-
-Esto permitirá conexiones desde cualquier dirección IP.
-
----
-
-## 5. Ejecutar el Backend
+## Comandos
 
 ```bash
-cd backend
-npm run dev
+# Ejecutar backend y frontend en paralelo
+pnpm dev
+
+# Ejecutarlos por separado
+pnpm dev:backend
+pnpm dev:frontend
+
+# Verificar calidad y compilacion
+pnpm lint
+pnpm build
+pnpm test
 ```
 
-El servidor iniciará por defecto en:
+El frontend queda disponible en `http://localhost:3000` y la API en `http://localhost:5000`.
+El endpoint `GET /health` permite comprobar que el servicio esta activo.
+
+## Validaciones de negocio
+
+- El nombre es obligatorio, admite entre 3 y 120 caracteres y se normalizan espacios.
+- El telefono debe contener unicamente numeros, comenzar con `09` y tener exactamente 10 digitos.
+- No se solicita ni almacena cedula. El identificador del cliente es el `_id` interno de MongoDB.
+- Dos personas pueden compartir telefono.
+- Se rechaza un cliente solo si coinciden nombre normalizado y telefono.
+- El monto de una visita debe ser numerico, finito, no negativo y no superar 100000.
+- El tipo y descripcion del portafolio son obligatorios y tienen limites de longitud.
+- Las imagenes deben ser validas, de tipo imagen y no superar 5 MB por archivo.
+
+Si la base de datos ya fue utilizada con una version anterior, ejecutar una vez `pnpm --filter judith-hairstudio-backend migrate:phone-index` para eliminar el antiguo indice unico del telefono.
+
+## API principal
+
+| Metodo | Ruta | Descripcion |
+| --- | --- | --- |
+| GET | `/health` | Estado del servicio |
+| GET | `/api/dashboard/metricas` | Indicadores del dashboard |
+| GET | `/api/clientes` | Lista de clientes |
+| POST | `/api/clientes` | Registra un cliente |
+| GET | `/api/clientes/:id` | Consulta un cliente |
+| POST | `/api/clientes/:id/visitas` | Registra una visita |
+| PUT | `/api/clientes/:id` | Actualiza un cliente |
+| DELETE | `/api/clientes/:id` | Elimina un cliente |
+| GET | `/api/portafolio` | Lista trabajos |
+| POST | `/api/portafolio` | Crea un trabajo con imagenes |
+| PUT | `/api/portafolio/:id` | Actualiza un trabajo |
+| DELETE | `/api/portafolio/:id` | Elimina un trabajo |
+
+## Despliegue
+
+En produccion se deben configurar variables de entorno reales, restringir `CORS_ORIGIN` al dominio del frontend y permitir en MongoDB Atlas solo las IP o servicios necesarios. No se debe utilizar `0.0.0.0/0` como configuracion permanente.
+
+El almacenamiento local de `backend/uploads` es adecuado para desarrollo. Para un despliegue con filesystem efimero se recomienda migrar las imagenes a un almacenamiento persistente u objeto antes de poner el sistema en produccion.
+
+## Estructura
 
 ```text
-http://localhost:5000
+backend/
+  config/
+  controllers/
+  middlewares/
+  models/
+  routers/
+  services/
+  test/
+  utils/
+  validators/
+frontend/
+  src/
+docs/
+pnpm-workspace.yaml
+package.json
 ```
 
----
-
-## 6. Ejecutar el Frontend
-
-```bash
-cd frontend
-npm run dev
-```
-
- mostrará una dirección similar a:
-
-```text
-http://localhost:3000
-```
-
----
-
-## 7. Acceso desde otros dispositivos
-
-El frontend obtiene automáticamente la dirección IP del equipo donde se ejecuta el servidor mediante:
-
-```javascript
-window.location.hostname
-```
-
-Esto permite acceder al sistema desde otros dispositivos conectados a la misma red local sin modificar el código fuente.
-
-Únicamente es necesario que:
-
-- Backend y Frontend estén en ejecución.
-- Ambos dispositivos pertenezcan a la misma red.
-- El puerto **5000** se encuentre disponible para el Backend.
-- El puerto utilizado por **** se encuentre accesible para el Frontend.
-
----
-
-## 8. Consideraciones
-
-- No subir el archivo `.env` al repositorio.
-- Verificar la conectividad con MongoDB antes de iniciar el sistema.
-- Para un entorno de producción se recomienda restringir el acceso a MongoDB Atlas únicamente a las direcciones IP autorizadas.
-
----
-
-# 📚 Conocimientos Aplicados
-
-Durante el desarrollo del proyecto se implementaron conceptos de:
-
-- Desarrollo Full Stack.
-- Arquitectura MERN.
-- Arquitectura MVC.
-- Diseño de APIs REST.
-- CRUD completo.
-- Persistencia de datos con MongoDB.
-- Consumo de APIs mediante Axios.
-- Componentes funcionales de React.
-- Hooks (`useState`, `useEffect`).
-- Manejo de imágenes con Multer.
-- Diseño de interfaces responsivas.
-
----
-
-# 📸 Capturas del Sistema
-
-## 📊 Dashboard
+## Capturas
 
 ![Dashboard](docs/dashboard.png)
-
----
-
-## 👥 Gestión de Clientes
-
 ![Clientes](docs/clientes.png)
-
----
-
-## 📋 Detalle del Cliente
-
-![Detalle Cliente](docs/detalleclientes.png)
-
----
-
-## 💇 Portafolio de Servicios
-
+![Detalle de cliente](docs/detalleclientes.png)
 ![Portafolio](docs/portafolio.png)
 
----
+Las capturas utilizan datos ficticios y no contienen informacion real de clientes.
 
-# 📝 Nota
+## Autor
 
-Las capturas de pantalla y los registros mostrados en este repositorio corresponden a **datos ficticios** creados exclusivamente con fines demostrativos y académicos.
+David Alejandro Cruz Palacios
+Estudiante de Ingenieria en Ciencias de la Computacion
+Universidad Politecnica Salesiana, Quito, Ecuador
 
-No se utiliza información personal ni datos reales de clientes.
+## Licencia
 
----
-# 👨‍💻 Autor
-
-**David Alejandro Cruz Palacios**
-
-Estudiante de Ingeniería en Ciencias de la Computación
-
-Universidad Politécnica Salesiana
-
-Quito, Ecuador
-
----
-
-# 📄 Licencia
-
-Este proyecto fue desarrollado con fines académicos y de aprendizaje.
-
-El código puede utilizarse como referencia educativa respetando los derechos de autor correspondientes.
+Este proyecto se distribuye bajo la licencia MIT. Consulta [LICENSE](LICENSE).
