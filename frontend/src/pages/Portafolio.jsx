@@ -24,25 +24,33 @@ const Portafolio = () => {
 
     useEffect(() => {
         cargarPortafolio();
+        // La carga inicial no depende de datos del render.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // Acción de Guardar (Crear o Modificar)
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const descripcionNormalizada = descripcion.trim();
+
+        if (descripcionNormalizada.length < 3 || descripcionNormalizada.length > 300) {
+            alert("La descripcion debe tener entre 3 y 300 caracteres.");
+            return;
+        }
         
         if (editandoId) {
             try {
-                await actualizarPortafolio(editandoId, { tipoServicio, descripcion });
+                await actualizarPortafolio(editandoId, { tipoServicio, descripcion: descripcionNormalizada });
                 alert("Portafolio actualizado correctamente.");
                 resetFormulario();
                 cargarPortafolio();
-            } catch (error) {
+            } catch {
                 alert("Error al actualizar el portafolio.");
             }
         } else {
             const formData = new FormData();
             formData.append('tipoServicio', tipoServicio);
-            formData.append('descripcion', descripcion);
+            formData.append('descripcion', descripcionNormalizada);
             formData.append('fotoAntes', fotoAntes);
             formData.append('fotoDespues', fotoDespues);
 
@@ -52,7 +60,7 @@ const Portafolio = () => {
                 resetFormulario();
                 e.target.reset();
                 cargarPortafolio();
-            } catch (error) {
+            } catch {
                 alert("Error al subir el portafolio técnico.");
             }
         }
@@ -70,7 +78,7 @@ const Portafolio = () => {
                 await eliminarPortafolio(id);
                 alert("Trabajo eliminado correctamente.");
                 cargarPortafolio();
-            } catch (error) {
+            } catch {
                 alert("Error al eliminar el elemento seleccionado.");
             }
         }
@@ -209,7 +217,7 @@ const Portafolio = () => {
                 </div>
                 <div className="form-group">
                     <label className="form-label">Descripción técnica:</label>
-                    <input type="text" className="form-input" value={descripcion} onChange={e => setDescripcion(e.target.value)} placeholder="Ej. Balayage en tonos cenizos" />
+                    <input type="text" className="form-input" value={descripcion} onChange={e => setDescripcion(e.target.value.slice(0, 300))} minLength="3" maxLength="300" placeholder="Ej. Balayage en tonos cenizos" required />
                 </div>
 
                 {!editandoId && (
