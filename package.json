@@ -1,0 +1,18 @@
+{
+  "name": "judith-hairstudio",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@11.19.0",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=11"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter ./backend --filter ./frontend dev",
+    "dev:backend": "pnpm --filter ./backend dev",
+    "dev:frontend": "pnpm --filter ./frontend dev",
+    "build": "pnpm --filter ./frontend build",
+    "lint": "pnpm --filter ./frontend lint",
+    "test": "pnpm --filter ./backend test"
+  }
+}

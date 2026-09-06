@@ -2,6 +2,7 @@
   "name": "judith-hairstudio-frontend",
   "private": true,
   "version": "1.0.0",
+  "packageManager": "pnpm@11.19.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -16,8 +17,12 @@
     "react-router-dom": "^7.18.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.0.0",
     "@types/react": "^18.2.56",
     "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^9.0.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
     "vite": "^5.1.4"
   }
 }
