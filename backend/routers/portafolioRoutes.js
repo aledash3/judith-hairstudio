@@ -1,19 +1,26 @@
 const express = require('express');
 const router = express.Router();
-const multer = require('multer');
 const portafolioController = require('../controllers/portafolioController');
+const asyncHandler = require('../middlewares/asyncHandler');
+const validateRequest = require('../middlewares/validateRequest');
+const { uploadPortafolioImages } = require('../middlewares/upload');
+const { validarPortafolio, validarImagenesPortafolio } = require('../validators/portafolioValidator');
 
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
+router.post(
+    '/',
+    uploadPortafolioImages,
+    validateRequest(validarImagenesPortafolio),
+    asyncHandler(portafolioController.crearPortafolio)
+);
 
-const uploadCampos = upload.fields([
-    { name: 'fotoAntes', maxCount: 1 },
-    { name: 'fotoDespues', maxCount: 1 }
-]);
+router.get('/', asyncHandler(portafolioController.obtenerPortafolios));
 
-router.post('/', uploadCampos, portafolioController.crearPortafolio);
-router.get('/', portafolioController.obtenerPortafolios);
-router.put('/:id', portafolioController.actualizarPortafolio);
-router.delete('/:id', portafolioController.eliminarPortafolio);
+router.put(
+    '/:id',
+    validateRequest(validarPortafolio),
+    asyncHandler(portafolioController.actualizarPortafolio)
+);
+
+router.delete('/:id', asyncHandler(portafolioController.eliminarPortafolio));
 
 module.exports = router;

@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const asyncHandler = require('../middlewares/asyncHandler');
+const validateRequest = require('../middlewares/validateRequest');
+const { validarCliente, validarVisita } = require('../validators/clienteValidator');
 
 const {
     registrarCliente,
@@ -10,13 +13,13 @@ const {
     obtenerClientePorId
 } = require('../controllers/clienteController');
 
-router.post('/', registrarCliente);
-router.get('/', obtenerClientes);
-router.get('/:id', obtenerClientePorId);
+router.post('/', validateRequest(validarCliente), asyncHandler(registrarCliente));
+router.get('/', asyncHandler(obtenerClientes));
+router.get('/:id', asyncHandler(obtenerClientePorId));
 
-router.post('/:clienteId/visitas', agregarVisita);
+router.post('/:clienteId/visitas', validateRequest(validarVisita), asyncHandler(agregarVisita));
 
-router.put('/:id', actualizarCliente);
-router.delete('/:id', eliminarCliente);
+router.put('/:id', validateRequest(validarCliente), asyncHandler(actualizarCliente));
+router.delete('/:id', asyncHandler(eliminarCliente));
 
 module.exports = router;
