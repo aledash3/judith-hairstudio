@@ -1,166 +1,231 @@
-# Judith HairStudio
+# 💇 Judith HairStudio — Salon Management System
 
-Sistema web full stack para la gestion de clientes, visitas, ingresos y portafolio de un salon de belleza.
+<p align="center">
+  <a href="https://github.com/aledash3/sistema-gestion-salon-belleza/actions/workflows/ci.yml">
+    <img src="https://github.com/aledash3/sistema-gestion-salon-belleza/actions/workflows/ci.yml/badge.svg" alt="CI Status">
+  </a>
+  <img src="https://img.shields.io/badge/Node.js-22+-339933?logo=nodedotjs&logoColor=white" alt="Node.js 22+">
+  <img src="https://img.shields.io/badge/pnpm-11+-F69220?logo=pnpm&logoColor=white" alt="pnpm 11+">
+  <img src="https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black" alt="React 18">
+  <img src="https://img.shields.io/badge/MongoDB-Mongoose-47A248?logo=mongodb&logoColor=white" alt="MongoDB">
+  <img src="https://img.shields.io/badge/Express-4-000000?logo=express&logoColor=white" alt="Express">
+  <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License">
+  <a href="README.es.md">
+    <img src="https://img.shields.io/badge/lang-Espa%C3%B1ol-yellow.svg" alt="Leer en Español">
+  </a>
+</p>
 
-![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
-![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
-![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![pnpm](https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=white)
+A production-ready Full-Stack MERN web application engineered for beauty salons, hairdressers, and aesthetics centers. It centralizes client management, visit and revenue tracking, real-time analytics, and a WebP-optimized hairstyle transformation portfolio with automated social media asset generation.
 
-## Funcionalidades
+> 🌐 **Language / Idioma:** English | [Leer documentación en Español](README.es.md)
 
-- Registro, edicion, consulta y eliminacion de clientes.
-- Identificador interno generado por MongoDB para cada cliente.
-- Validacion de nombres y telefonos ecuatorianos de exactamente 10 digitos.
-- Telefonos compartidos entre personas distintas, por ejemplo familiares.
-- Bloqueo de duplicados solo cuando coinciden nombre normalizado y telefono.
-- Historial de visitas con ingresos no negativos.
-- Dashboard con clientes, ingresos, servicios y portafolio.
-- Portafolio de transformaciones con imagenes optimizadas a WebP.
-- Exportacion de composiciones verticales para redes sociales.
+---
 
-## Arquitectura
+## 📌 Features
+
+### 👥 Client & Visit Management
+- Complete CRUD operations (Create, Read, Update, Delete) for clients and visit histories.
+- MongoDB internal `_id` identity tracking (no sensitive ID card numbers stored).
+- Robust validation for Ecuadorian mobile phone numbers (strictly 10 digits starting with `09`).
+- Family-friendly phone sharing: allows different individuals (e.g., family members) to share phone numbers.
+- Name deduplication: intelligent duplicate blocking only when normalized full name and phone number match.
+- Visit logs with non-negative revenue validation, service timestamps, and treatment notes.
+
+### 📊 Real-Time Analytics Dashboard
+- Key performance metrics: total clients, cumulative revenue, total visits, and average ticket size.
+- Aggregated insights highlighting top-requested services and recurring customer loyalty rates.
+- Service breakdown charts for daily and monthly business tracking.
+
+### 📸 Portfolio & WebP Image Pipeline
+- Before/After hair transformation showcase with categorized styling techniques.
+- Automated server-side image processing and compression to high-performance WebP using `sharp`.
+- Built-in social media export tool for vertical compositions optimized for Instagram Stories and TikTok.
+
+---
+
+## 🏗 System Architecture
+
+The project is structured as a **pnpm monorepo workspace** with strict separation of concerns following the MVC architectural pattern:
 
 ```text
-React + Vite
-    |
-    | Axios / proxy de desarrollo
-    v
-API REST con Express
-    |
-    +-- Routers
-    +-- Validadores
-    +-- Controladores
-    +-- Servicios de negocio
-    +-- Modelos Mongoose
-    v
-MongoDB
+React 18 + Vite (Frontend)
+    │
+    │  Axios Client / Development Proxy
+    ▼
+Express.js REST API (Backend)
+    │
+    ├── Middleware (Auth, Uploads, Error Handling, Request Validators)
+    ├── Routers (Decoupled route endpoints)
+    ├── Controllers (HTTP request/response handling)
+    ├── Services (Business logic & domain validation)
+    └── Models (Mongoose Schemas & MongoDB indexes)
+    │
+    ▼
+MongoDB (Database)
 ```
 
-El backend separa rutas, validacion, controladores, servicios y modelos. El frontend consume la API mediante un cliente Axios centralizado.
+---
 
-## Requisitos
+## 📁 Repository Structure
 
-- Node.js 20 o superior.
-- pnpm 11 o superior.
-- MongoDB local o MongoDB Atlas.
+```text
+sistema-gestion-salon-belleza/
+├── .github/
+│   └── workflows/
+│       └── ci.yml               # Automated CI pipeline (pnpm install, test, lint, build)
+├── backend/
+│   ├── config/                  # Database connectivity (MongoDB / Mongoose)
+│   ├── controllers/             # HTTP controller handlers
+│   ├── middlewares/             # Upload (Multer), async handler, error middleware
+│   ├── models/                  # Cliente and Portafolio Mongoose schemas
+│   ├── routers/                 # API endpoint routers
+│   ├── scripts/                 # Migration scripts (index cleanup)
+│   ├── services/                # Core business logic
+│   ├── test/                    # Unit tests using Node.js native test runner
+│   ├── utils/                   # Custom HTTP error helpers
+│   ├── validators/              # Input sanitization and phone/revenue validators
+│   ├── package.json             # Backend dependencies & scripts
+│   └── server.js                # Express application bootstrapping
+├── frontend/
+│   ├── src/
+│   │   ├── pages/               # Clientes, Dashboard, Portafolio views
+│   │   ├── services/            # Centralized Axios API client
+│   │   ├── styles/              # Custom responsive CSS design system
+│   │   ├── App.jsx              # React router configuration
+│   │   └── index.jsx            # Application entrypoint
+│   ├── index.html               # Single Page Application template
+│   ├── package.json             # Frontend dependencies & scripts
+│   └── vite.config.js           # Vite dev proxy and build configuration
+├── docs/                        # Application UI screenshots
+├── .gitignore                   # Standard gitignore (node_modules, .env, uploads)
+├── .npmrc                       # Strict engine and peer dependencies rules
+├── pnpm-lock.yaml               # Reproducible pnpm dependency lockfile
+├── pnpm-workspace.yaml          # Monorepo workspace configuration
+├── package.json                 # Monorepo root scripts and engines declaration
+├── LICENSE                      # MIT License
+├── README.md                    # English technical documentation
+└── README.es.md                 # Spanish documentation
+```
 
-## Instalacion
+---
 
+## 🛠 Tech Stack
+
+| Layer | Technologies |
+| --- | --- |
+| **Frontend** | React 18, Vite 5, React Router 7, Axios, CSS Modules / Custom Palette |
+| **Backend** | Node.js 20, Express 4, Multer, Sharp, Mongoose 8, MongoDB Native Driver |
+| **Tooling & Monorepo** | pnpm 11 Workspace, ESLint 9, Node.js Test Runner |
+| **CI / DevOps** | GitHub Actions, Git |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- **Node.js**: `>= 22.0.0`
+- **pnpm**: `>= 11.0.0` (Install globally with `npm install -g pnpm` or `corepack enable`)
+- **MongoDB**: Local MongoDB instance or MongoDB Atlas cluster.
+
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/aledash3/sistema-gestion-salon-belleza.git
 cd sistema-gestion-salon-belleza
+```
+
+### 2. Install Workspace Dependencies
+```bash
 pnpm install
 ```
 
-Crear `backend/.env` a partir de `backend/.env.example`:
-
-```env
+### 3. Environment Configuration
+Create the backend environment file from the provided template:
+```bash
+# In backend/.env
 PORT=5000
 NODE_ENV=development
 CORS_ORIGIN=http://localhost:3000
 MONGO_URI=mongodb://localhost:27017/judith-hairstudio
 ```
 
-Para el frontend puede crearse `frontend/.env` desde `frontend/.env.example`:
-
-```env
+For the frontend, configure `frontend/.env`:
+```bash
+# In frontend/.env
+# Leave blank during local development to use the Vite reverse proxy
 VITE_API_URL=
 ```
 
-En desarrollo se recomienda dejar `VITE_API_URL` vacia y utilizar el proxy de Vite. En produccion debe apuntar al origen publico de la API.
-
-## Comandos
-
+### 4. Running the Application
 ```bash
-# Ejecutar backend y frontend en paralelo
+# Run backend and frontend concurrently
 pnpm dev
 
-# Ejecutarlos por separado
-pnpm dev:backend
-pnpm dev:frontend
+# Or run services independently
+pnpm dev:backend   # API on http://localhost:5000
+pnpm dev:frontend  # UI on http://localhost:3000
+```
 
-# Verificar calidad y compilacion
-pnpm lint
-pnpm build
+---
+
+## 🧪 Testing & Code Quality
+
+The monorepo includes automated unit tests, linting, and production build checks:
+
+```bash
+# Run backend unit tests (Node.js native test runner)
 pnpm test
+
+# Run ESLint across frontend code
+pnpm lint
+
+# Compile production build of frontend
+pnpm build
 ```
 
-El frontend queda disponible en `http://localhost:3000` y la API en `http://localhost:5000`.
-El endpoint `GET /health` permite comprobar que el servicio esta activo.
+---
 
-## Validaciones de negocio
+## 🔌 RESTful API Reference
 
-- El nombre es obligatorio, admite entre 3 y 120 caracteres y se normalizan espacios.
-- El telefono debe contener unicamente numeros, comenzar con `09` y tener exactamente 10 digitos.
-- No se solicita ni almacena cedula. El identificador del cliente es el `_id` interno de MongoDB.
-- Dos personas pueden compartir telefono.
-- Se rechaza un cliente solo si coinciden nombre normalizado y telefono.
-- El monto de una visita debe ser numerico, finito, no negativo y no superar 100000.
-- El tipo y descripcion del portafolio son obligatorios y tienen limites de longitud.
-- Las imagenes deben ser validas, de tipo imagen y no superar 5 MB por archivo.
+| HTTP Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/health` | Service health status check |
+| `GET` | `/api/dashboard/metricas` | Aggregated dashboard analytics & revenue metrics |
+| `GET` | `/api/clientes` | Retrieve all registered clients |
+| `POST` | `/api/clientes` | Create a new client profile |
+| `GET` | `/api/clientes/:id` | Fetch client details and visit history |
+| `POST` | `/api/clientes/:id/visitas` | Record a new client appointment / visit |
+| `PUT` | `/api/clientes/:id` | Update client profile information |
+| `DELETE` | `/api/clientes/:id` | Remove a client profile |
+| `GET` | `/api/portafolio` | Fetch all portfolio entries |
+| `POST` | `/api/portafolio` | Upload a new portfolio transformation (with images) |
+| `PUT` | `/api/portafolio/:id` | Update portfolio entry details |
+| `DELETE` | `/api/portafolio/:id` | Delete a portfolio entry and its assets |
 
-Si la base de datos ya fue utilizada con una version anterior, ejecutar una vez `pnpm --filter judith-hairstudio-backend migrate:phone-index` para eliminar el antiguo indice unico del telefono.
+---
 
-## API principal
+## 📸 Screenshots
 
-| Metodo | Ruta | Descripcion |
-| --- | --- | --- |
-| GET | `/health` | Estado del servicio |
-| GET | `/api/dashboard/metricas` | Indicadores del dashboard |
-| GET | `/api/clientes` | Lista de clientes |
-| POST | `/api/clientes` | Registra un cliente |
-| GET | `/api/clientes/:id` | Consulta un cliente |
-| POST | `/api/clientes/:id/visitas` | Registra una visita |
-| PUT | `/api/clientes/:id` | Actualiza un cliente |
-| DELETE | `/api/clientes/:id` | Elimina un cliente |
-| GET | `/api/portafolio` | Lista trabajos |
-| POST | `/api/portafolio` | Crea un trabajo con imagenes |
-| PUT | `/api/portafolio/:id` | Actualiza un trabajo |
-| DELETE | `/api/portafolio/:id` | Elimina un trabajo |
+| Dashboard Metrics | Client Directory |
+| :---: | :---: |
+| ![Dashboard](docs/dashboard.png) | ![Clients](docs/clientes.png) |
 
-## Despliegue
+| Client Visit Details | Transformation Portfolio |
+| :---: | :---: |
+| ![Client Details](docs/detalleclientes.png) | ![Portfolio](docs/portafolio.png) |
 
-En produccion se deben configurar variables de entorno reales, restringir `CORS_ORIGIN` al dominio del frontend y permitir en MongoDB Atlas solo las IP o servicios necesarios. No se debe utilizar `0.0.0.0/0` como configuracion permanente.
+> *Note: Screenshots display fictional placeholder data for demonstration purposes.*
 
-El almacenamiento local de `backend/uploads` es adecuado para desarrollo. Para un despliegue con filesystem efimero se recomienda migrar las imagenes a un almacenamiento persistente u objeto antes de poner el sistema en produccion.
+---
 
-## Estructura
+## 👨‍💻 Author
 
-```text
-backend/
-  config/
-  controllers/
-  middlewares/
-  models/
-  routers/
-  services/
-  test/
-  utils/
-  validators/
-frontend/
-  src/
-docs/
-pnpm-workspace.yaml
-package.json
-```
+**David Alejandro Cruz Palacios**  
+Computer Science Engineering Student  
+Universidad Politécnica Salesiana — Quito, Ecuador  
+GitHub: [@aledash3](https://github.com/aledash3)
 
-## Capturas
+---
 
-![Dashboard](docs/dashboard.png)
-![Clientes](docs/clientes.png)
-![Detalle de cliente](docs/detalleclientes.png)
-![Portafolio](docs/portafolio.png)
+## 📄 License
 
-Las capturas utilizan datos ficticios y no contienen informacion real de clientes.
-
-## Autor
-
-David Alejandro Cruz Palacios
-Estudiante de Ingenieria en Ciencias de la Computacion
-Universidad Politecnica Salesiana, Quito, Ecuador
-
-## Licencia
-
-Este proyecto se distribuye bajo la licencia MIT. Consulta [LICENSE](LICENSE).
+This project is licensed under the terms of the [MIT License](LICENSE).

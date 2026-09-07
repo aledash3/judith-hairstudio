@@ -1,7 +1,7 @@
 {
   "name": "judith-hairstudio-backend",
   "version": "1.0.0",
-  "description": "Backend para la Peluquería Judith",
+  "description": "Backend para la Peluquer\u00eda Judith",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -20,5 +20,7 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
-  }
+  },
+  "license": "MIT",
+  "packageManager": "pnpm@11.19.0"
 }

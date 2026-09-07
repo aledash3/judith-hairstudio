@@ -4,7 +4,7 @@
   "private": true,
   "packageManager": "pnpm@11.19.0",
   "engines": {
-    "node": ">=20",
+    "node": ">=22.13",
     "pnpm": ">=11"
   },
   "scripts": {
@@ -14,5 +14,8 @@
     "build": "pnpm --filter ./frontend build",
     "lint": "pnpm --filter ./frontend lint",
     "test": "pnpm --filter ./backend test"
-  }
+  },
+  "description": "Full-stack beauty salon management web application built with React, Vite, Node.js, Express, and MongoDB in a pnpm workspace",
+  "license": "MIT",
+  "author": "David Alejandro Cruz Palacios"
 }

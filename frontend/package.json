@@ -24,5 +24,6 @@
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "vite": "^5.1.4"
-  }
+  },
+  "license": "MIT"
 }
