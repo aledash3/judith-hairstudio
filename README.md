@@ -1,8 +1,8 @@
 # 💇 Judith HairStudio — Salon Management System
 
 <p align="center">
-  <a href="https://github.com/aledash3/sistema-gestion-salon-belleza/actions/workflows/ci.yml">
-    <img src="https://github.com/aledash3/sistema-gestion-salon-belleza/actions/workflows/ci.yml/badge.svg" alt="CI Status">
+  <a href="https://github.com/aledash3/judith-hairstudio/actions/workflows/ci.yml">
+    <img src="https://github.com/aledash3/judith-hairstudio/actions/workflows/ci.yml/badge.svg" alt="CI Status">
   </a>
   <img src="https://img.shields.io/badge/Node.js-22+-339933?logo=nodedotjs&logoColor=white" alt="Node.js 22+">
   <img src="https://img.shields.io/badge/pnpm-11+-F69220?logo=pnpm&logoColor=white" alt="pnpm 11+">
@@ -69,7 +69,7 @@ MongoDB (Database)
 ## 📁 Repository Structure
 
 ```text
-sistema-gestion-salon-belleza/
+judith-hairstudio/
 ├── .github/
 │   └── workflows/
 │       └── ci.yml               # Automated CI pipeline (pnpm install, test, lint, build)
@@ -129,8 +129,8 @@ sistema-gestion-salon-belleza/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/aledash3/sistema-gestion-salon-belleza.git
-cd sistema-gestion-salon-belleza
+git clone https://github.com/aledash3/judith-hairstudio.git
+cd judith-hairstudio
 ```
 
 ### 2. Install Workspace Dependencies
