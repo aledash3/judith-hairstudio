@@ -1,7 +1,7 @@
 # 💇 Judith HairStudio — Salon Management System
 
 [![CI](https://img.shields.io/github/actions/workflow/status/aledash3/judith-hairstudio/ci.yml?branch=main&style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/aledash3/judith-hairstudio/actions)
-[![Node.js](https://img.shields.io/badge/Node.js-22+-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-22.13+-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 [![pnpm](https://img.shields.io/badge/pnpm-11+-F69220?style=for-the-badge&logo=pnpm&logoColor=white)](https://pnpm.io/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![Express](https://img.shields.io/badge/Express-4-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
@@ -9,11 +9,15 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 [![Español](https://img.shields.io/badge/Idioma-Espa%C3%B1ol-orange?style=for-the-badge)](README.es.md)
 
-A production-ready Full-Stack MERN web application engineered for beauty salons, hairdressers, and aesthetics centers. It centralizes client management, visit and revenue tracking, real-time analytics, and a WebP-optimized hairstyle transformation portfolio with automated social media asset generation.
+A Full-Stack MERN project built for beauty salons, hairdressers, and aesthetics centers. It centralizes client management, visit and revenue tracking, real-time analytics, and a WebP-optimized hairstyle transformation portfolio with automated social media asset generation.
 
 > 🌐 **Language / Idioma:** English | [Leer documentación en Español](README.es.md)
 
 ---
+
+## Scope and verification
+
+Portfolio/academic project. The repository documents features, demo screenshots and a CI workflow; it does not claim validated production use. Before handling real customer data, verify access control, uploads, HTTPS, backups and deployment configuration. The authoritative runtime requirement is `engines.node` in the root `package.json`: Node.js >=22.13.
 
 ## 🖥️ Application Interface
 
@@ -122,7 +126,7 @@ judith-hairstudio/
 | Layer | Technologies |
 | --- | --- |
 | **Frontend** | React 18, Vite 5, React Router 7, Axios, CSS Modules / Custom Palette |
-| **Backend** | Node.js 20, Express 4, Multer, Sharp, Mongoose 8, MongoDB Native Driver |
+| **Backend** | Node.js 22.13+, Express 4, Multer, Sharp, Mongoose 8, MongoDB Native Driver |
 | **Tooling & Monorepo** | pnpm 11 Workspace, ESLint 9, Node.js Test Runner |
 | **CI / DevOps** | GitHub Actions, Git |
 
@@ -213,8 +217,8 @@ pnpm build
 
 ## 👨‍💻 Author
 
-**David Alejandro Cruz Palacios**  
-Computer Science Engineering Student — Universidad Politécnica Salesiana  
+**David Alejandro Cruz Palacios**
+Computer Science Engineering Student — Universidad Politécnica Salesiana
 GitHub: [@aledash3](https://github.com/aledash3)
 
 ---

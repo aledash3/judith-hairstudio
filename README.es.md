@@ -1,7 +1,7 @@
 # 💇 Judith HairStudio — Sistema de Gestión para Salón de Belleza
 
 [![CI](https://img.shields.io/github/actions/workflow/status/aledash3/judith-hairstudio/ci.yml?branch=main&style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/aledash3/judith-hairstudio/actions)
-[![Node.js](https://img.shields.io/badge/Node.js-22+-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-22.13+-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 [![pnpm](https://img.shields.io/badge/pnpm-11+-F69220?style=for-the-badge&logo=pnpm&logoColor=white)](https://pnpm.io/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![Express](https://img.shields.io/badge/Express-4-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
@@ -9,11 +9,15 @@
 [![Licencia: MIT](https://img.shields.io/badge/Licencia-MIT-yellow?style=for-the-badge)](LICENSE)
 [![English](https://img.shields.io/badge/Language-English-blue?style=for-the-badge)](README.md)
 
-Sistema web Full-Stack MERN diseñado para la administración integral de peluquerías, salones de belleza y centros estéticos. Permite gestionar clientes, historial clínico de visitas, control de ingresos, análisis de fidelización en un dashboard interactivo y un catálogo de transformaciones visuales optimizado en WebP con exportación para redes sociales.
+Sistema web Full-Stack MERN diseñado para la administración integral de peluquerías, salones de belleza y centros estéticos. Permite gestionar clientes, historial de visitas, control de ingresos, análisis de fidelización en un dashboard interactivo y un catálogo de transformaciones visuales optimizado en WebP con exportación para redes sociales.
 
 > 🌐 **Language / Idioma:** Español | [Switch to English documentation](README.md)
 
 ---
+
+## Alcance y verificación
+
+Proyecto académico/de portafolio. El repositorio documenta funciones, capturas de demostración y un workflow de CI; no afirma uso productivo validado. Antes de utilizar datos reales, deben verificarse accesos, archivos subidos, HTTPS, respaldos y configuración de despliegue. El requisito de Node.js se define en `engines.node` del `package.json` raíz: >=22.13.
 
 ## 🖥️ Interfaz de la Aplicación
 
@@ -122,7 +126,7 @@ judith-hairstudio/
 | Capa | Tecnologías |
 | --- | --- |
 | **Frontend** | React 18, Vite 5, React Router 7, Axios, CSS Modules / Paleta personalizada |
-| **Backend** | Node.js 20, Express 4, Multer, Sharp, Mongoose 8, MongoDB Driver |
+| **Backend** | Node.js 22.13+, Express 4, Multer, Sharp, Mongoose 8, MongoDB Driver |
 | **Gestión y Workspace** | pnpm 11 Workspace, ESLint 9, Node.js Native Test Runner |
 | **CI / DevOps** | GitHub Actions, Git |
 
@@ -213,8 +217,8 @@ pnpm build
 
 ## 👨‍💻 Autor
 
-**David Alejandro Cruz Palacios**  
-Estudiante de Ingeniería en Ciencias de la Computación — Universidad Politécnica Salesiana  
+**David Alejandro Cruz Palacios**
+Estudiante de Ingeniería en Ciencias de la Computación — Universidad Politécnica Salesiana
 GitHub: [@aledash3](https://github.com/aledash3)
 
 ---
