@@ -214,7 +214,7 @@ pnpm build
 ## 👨‍💻 Autor
 
 **David Alejandro Cruz Palacios**  
-Desarrollador de Software Full-Stack  
+Estudiante de Ingeniería en Ciencias de la Computación — Universidad Politécnica Salesiana  
 GitHub: [@aledash3](https://github.com/aledash3)
 
 ---
