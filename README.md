@@ -1,23 +1,31 @@
 # 💇 Judith HairStudio — Salon Management System
 
-<p align="center">
-  <a href="https://github.com/aledash3/judith-hairstudio/actions/workflows/ci.yml">
-    <img src="https://github.com/aledash3/judith-hairstudio/actions/workflows/ci.yml/badge.svg" alt="CI Status">
-  </a>
-  <img src="https://img.shields.io/badge/Node.js-22+-339933?logo=nodedotjs&logoColor=white" alt="Node.js 22+">
-  <img src="https://img.shields.io/badge/pnpm-11+-F69220?logo=pnpm&logoColor=white" alt="pnpm 11+">
-  <img src="https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black" alt="React 18">
-  <img src="https://img.shields.io/badge/MongoDB-Mongoose-47A248?logo=mongodb&logoColor=white" alt="MongoDB">
-  <img src="https://img.shields.io/badge/Express-4-000000?logo=express&logoColor=white" alt="Express">
-  <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License">
-  <a href="README.es.md">
-    <img src="https://img.shields.io/badge/lang-Espa%C3%B1ol-yellow.svg" alt="Leer en Español">
-  </a>
-</p>
+[![CI](https://img.shields.io/github/actions/workflow/status/aledash3/judith-hairstudio/ci.yml?branch=main&style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/aledash3/judith-hairstudio/actions)
+[![Node.js](https://img.shields.io/badge/Node.js-22+-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![pnpm](https://img.shields.io/badge/pnpm-11+-F69220?style=for-the-badge&logo=pnpm&logoColor=white)](https://pnpm.io/)
+[![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![Express](https://img.shields.io/badge/Express-4-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
+[![Español](https://img.shields.io/badge/Idioma-Espa%C3%B1ol-orange?style=for-the-badge)](README.es.md)
 
 A production-ready Full-Stack MERN web application engineered for beauty salons, hairdressers, and aesthetics centers. It centralizes client management, visit and revenue tracking, real-time analytics, and a WebP-optimized hairstyle transformation portfolio with automated social media asset generation.
 
 > 🌐 **Language / Idioma:** English | [Leer documentación en Español](README.es.md)
+
+---
+
+## 🖥️ Application Interface
+
+| Dashboard Metrics | Client Directory |
+| :---: | :---: |
+| ![Dashboard](docs/dashboard.png) | ![Clients](docs/clientes.png) |
+
+| Client Visit Details | Transformation Portfolio |
+| :---: | :---: |
+| ![Client Details](docs/detalleclientes.png) | ![Portfolio](docs/portafolio.png) |
+
+> *Note: Screenshots display fictional placeholder data for demonstration purposes.*
 
 ---
 
@@ -203,25 +211,10 @@ pnpm build
 
 ---
 
-## 📸 Screenshots
-
-| Dashboard Metrics | Client Directory |
-| :---: | :---: |
-| ![Dashboard](docs/dashboard.png) | ![Clients](docs/clientes.png) |
-
-| Client Visit Details | Transformation Portfolio |
-| :---: | :---: |
-| ![Client Details](docs/detalleclientes.png) | ![Portfolio](docs/portafolio.png) |
-
-> *Note: Screenshots display fictional placeholder data for demonstration purposes.*
-
----
-
 ## 👨‍💻 Author
 
 **David Alejandro Cruz Palacios**  
-Computer Science Engineering Student  
-Universidad Politécnica Salesiana — Quito, Ecuador  
+Full-Stack Software Developer  
 GitHub: [@aledash3](https://github.com/aledash3)
 
 ---
