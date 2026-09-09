@@ -217,8 +217,8 @@ pnpm build
 
 ## 👨‍💻 Author
 
-**David Alejandro Cruz Palacios**
-Computer Science Engineering Student — Universidad Politécnica Salesiana
+**David Alejandro Cruz Palacios**  
+Computer Science Engineering Student — Universidad Politécnica Salesiana  
 GitHub: [@aledash3](https://github.com/aledash3)
 
 ---
