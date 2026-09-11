@@ -2,12 +2,12 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, refactor/* ]
   pull_request:
     branches: [ main ]
 
 jobs:
-  build-and-test:
+  build-test-and-lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,7 +17,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 11.19.0
+          version: 11.25.0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -28,11 +28,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Run backend tests
+      - name: Run test suite (Unit & API Integration)
         run: pnpm test
 
-      - name: Run frontend lint
+      - name: Run code linter
         run: pnpm lint
 
-      - name: Build frontend
+      - name: Build Next.js application
         run: pnpm build
+        env:
+          DOCKER_BUILD: 1

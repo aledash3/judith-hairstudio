@@ -1,31 +1,28 @@
-# 💇 Judith HairStudio — Salon Management System
+# 💇 Judith HairStudio — Salon Management & Transformation System
 
 [![CI](https://img.shields.io/github/actions/workflow/status/aledash3/judith-hairstudio/ci.yml?branch=main&style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/aledash3/judith-hairstudio/actions)
-[![Node.js](https://img.shields.io/badge/Node.js-22.13+-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Next.js 15](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React 19](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-22+-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 [![pnpm](https://img.shields.io/badge/pnpm-11+-F69220?style=for-the-badge&logo=pnpm&logoColor=white)](https://pnpm.io/)
-[![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
-[![Express](https://img.shields.io/badge/Express-4-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 [![Español](https://img.shields.io/badge/Idioma-Espa%C3%B1ol-orange?style=for-the-badge)](README.es.md)
 
-A Full-Stack MERN project built for beauty salons, hairdressers, and aesthetics centers. It centralizes client management, visit and revenue tracking, real-time analytics, and a WebP-optimized hairstyle transformation portfolio with automated social media asset generation.
+A production-ready, full-stack web application engineered for beauty salons, aesthetic centers, and hairstylists. Built with **Next.js 15 (App Router)**, **TypeScript**, **Mongoose**, and **Sharp**, it centralizes customer directory management, visit and revenue tracking, real-time analytics, and a WebP-optimized Before/After transformation showcase with automated vertical export for Instagram Stories and TikTok.
 
 > 🌐 **Language / Idioma:** English | [Leer documentación en Español](README.es.md)
 
 ---
 
-## Scope and verification
-
-Portfolio/academic project. The repository documents features, demo screenshots and a CI workflow; it does not claim validated production use. Before handling real customer data, verify access control, uploads, HTTPS, backups and deployment configuration. The authoritative runtime requirement is `engines.node` in the root `package.json`: Node.js >=22.13.
-
 ## 🖥️ Application Interface
 
-| Dashboard Metrics | Client Directory |
+| Real-Time KPI Dashboard | Customer Directory |
 | :---: | :---: |
 | ![Dashboard](docs/dashboard.png) | ![Clients](docs/clientes.png) |
 
-| Client Visit Details | Transformation Portfolio |
+| Individual Client Profile & History | Transformation Portfolio (Before/After) |
 | :---: | :---: |
 | ![Client Details](docs/detalleclientes.png) | ![Portfolio](docs/portafolio.png) |
 
@@ -33,47 +30,55 @@ Portfolio/academic project. The repository documents features, demo screenshots 
 
 ---
 
-## 📌 Features
+## 📌 Core Features
 
-### 👥 Client & Visit Management
-- Complete CRUD operations (Create, Read, Update, Delete) for clients and visit histories.
-- MongoDB internal `_id` identity tracking (no sensitive ID card numbers stored).
-- Robust validation for Ecuadorian mobile phone numbers (strictly 10 digits starting with `09`).
-- Family-friendly phone sharing: allows different individuals (e.g., family members) to share phone numbers.
-- Name deduplication: intelligent duplicate blocking only when normalized full name and phone number match.
-- Visit logs with non-negative revenue validation, service timestamps, and treatment notes.
+### 👥 Client & Visit Tracking (Ecuadorian Domain Logic)
+- **Deep Linking:** Direct routing to client profiles (`/clientes/[id]`) displaying complete chronological history and average ticket value.
+- **Ecuadorian Phone Validation:** Strictly enforces 10-digit mobile numbers starting with `09` (`^09\d{8}$`).
+- **Family Sharing & Intelligent Deduplication:** Allows family members to share phone numbers while preventing accidental duplicate entries when normalized full name and phone number match.
+- **Financial Integrity:** Prevents negative dollar amounts in visit records and tracks cumulative expenditure.
 
-### 📊 Real-Time Analytics Dashboard
-- Key performance metrics: total clients, cumulative revenue, total visits, and average ticket size.
-- Aggregated insights highlighting top-requested services and recurring customer loyalty rates.
-- Service breakdown charts for daily and monthly business tracking.
+### 📊 Financial & Operational Analytics Dashboard
+- Dynamic time-range filtering: **Today**, **Last 7 Days**, and **Last 30 Days**.
+- Aggregated financial KPIs: total revenue, active customers, completed services, and portfolio entries.
+- Top-ranking services ranking highlight (*Star Services*).
 
-### 📸 Portfolio & WebP Image Pipeline
-- Before/After hair transformation showcase with categorized styling techniques.
-- Automated server-side image processing and compression to high-performance WebP using `sharp`.
-- Built-in social media export tool for vertical compositions optimized for Instagram Stories and TikTok.
+### 📸 Sharp Image Pipeline & Social Media Generator
+- **Multi-Driver Storage Architecture:** Pluggable `StorageProvider` supporting **Local Filesystem** (`public/uploads/`) or **Cloudinary CDN** via `STORAGE_DRIVER` environment variable.
+- **Server-Side Optimization:** Resizes and compresses images to modern WebP (800px width, 80 quality) using Sharp within an explicit Node.js runtime.
+- **Instagram Stories & TikTok Asset Generator:** Client-side HTML5 Canvas composition tool rendering HD 9:16 vertical cards with before/after comparison and custom branding.
 
 ---
 
-## 🏗 System Architecture
-
-The project is structured as a **pnpm monorepo workspace** with strict separation of concerns following the MVC architectural pattern:
+## 🏗️ System Architecture
 
 ```text
-React 18 + Vite (Frontend)
-    │
-    │  Axios Client / Development Proxy
-    ▼
-Express.js REST API (Backend)
-    │
-    ├── Middleware (Auth, Uploads, Error Handling, Request Validators)
-    ├── Routers (Decoupled route endpoints)
-    ├── Controllers (HTTP request/response handling)
-    ├── Services (Business logic & domain validation)
-    └── Models (Mongoose Schemas & MongoDB indexes)
-    │
-    ▼
-MongoDB (Database)
+Next.js 15 App Router (Full-Stack Monolith)
+│
+├── Frontend Layer (React 19 + TypeScript)
+│   ├── App Views (/, /clientes, /clientes/[id], /portafolio)
+│   ├── Navigation & Responsive Layout (components/Navbar.tsx)
+│   └── Styles (styles/custom-palette.css)
+│
+├── Middleware Layer (src/middleware.ts)
+│   └── Optional HTTP Basic Auth (ENABLE_BASIC_AUTH=true behind HTTPS)
+│
+├── REST API Layer (Route Handlers - src/app/api/)
+│   ├── /api/clientes (GET, POST)
+│   ├── /api/clientes/[id] (GET, PUT, DELETE)
+│   ├── /api/clientes/[id]/visitas (POST)
+│   ├── /api/dashboard/metricas (GET)
+│   └── /api/portafolio (GET, POST, PUT, DELETE)
+│
+├── Domain & Service Layer (src/lib/)
+│   ├── Domain Services (clienteService, dashboardService, portafolioService)
+│   ├── Input Validators (clienteValidator, portafolioValidator)
+│   ├── Storage Providers (LocalStorageProvider, CloudinaryStorageProvider)
+│   └── Database Connectivity (Mongoose Cached Connection Singleton)
+│
+└── Data Persistence (MongoDB)
+    ├── Clientes (Compound Index: { nombre: 1, whatsapp: 1 })
+    └── Portafolios
 ```
 
 ---
@@ -83,146 +88,110 @@ MongoDB (Database)
 ```text
 judith-hairstudio/
 ├── .github/
+│   ├── ISSUE_TEMPLATE/          # Structured YAML issue templates (Bug, Feature, Config)
+│   ├── PULL_REQUEST_TEMPLATE.md # Standard PR checklist
 │   └── workflows/
 │       └── ci.yml               # Automated CI pipeline (pnpm install, test, lint, build)
-├── backend/
-│   ├── config/                  # Database connectivity (MongoDB / Mongoose)
-│   ├── controllers/             # HTTP controller handlers
-│   ├── middlewares/             # Upload (Multer), async handler, error middleware
-│   ├── models/                  # Cliente and Portafolio Mongoose schemas
-│   ├── routers/                 # API endpoint routers
-│   ├── scripts/                 # Migration scripts (index cleanup)
-│   ├── services/                # Core business logic
-│   ├── test/                    # Unit tests using Node.js native test runner
-│   ├── utils/                   # Custom HTTP error helpers
-│   ├── validators/              # Input sanitization and phone/revenue validators
-│   ├── package.json             # Backend dependencies & scripts
-│   └── server.js                # Express application bootstrapping
-├── frontend/
-│   ├── src/
-│   │   ├── pages/               # Clientes, Dashboard, Portafolio views
-│   │   ├── services/            # Centralized Axios API client
-│   │   ├── styles/              # Custom responsive CSS design system
-│   │   ├── App.jsx              # React router configuration
-│   │   └── index.jsx            # Application entrypoint
-│   ├── index.html               # Single Page Application template
-│   ├── package.json             # Frontend dependencies & scripts
-│   └── vite.config.js           # Vite dev proxy and build configuration
+├── public/
+│   └── uploads/                 # Persistent uploaded assets storage (.gitkeep)
+├── src/
+│   ├── app/                     # Next.js 15 App Router (Views & REST Route Handlers)
+│   ├── components/              # Reusable UI components (Navbar, etc.)
+│   ├── lib/                     # Domain services, Mongoose models, validators, storage drivers
+│   ├── styles/                  # Custom luxury beauty studio palette
+│   └── middleware.ts            # Optional Basic Auth security layer
+├── test/
+│   ├── api-integration.test.ts  # Route Handlers integration test suite
+│   └── validators.test.ts       # Domain validators unit test suite
+├── scripts/
+│   ├── backup-db.sh             # Automated database dump script (Linux/macOS)
+│   ├── backup-db.ps1            # Automated database dump script (Windows)
+│   ├── migrate-uploads-to-cloud.ts # Cloud migration utility
+│   └── verify-db-parity.ts      # Schema parity validation script
 ├── docs/                        # Application UI screenshots
-├── .gitignore                   # Standard gitignore (node_modules, .env, uploads)
-├── .npmrc                       # Strict engine and peer dependencies rules
-├── pnpm-lock.yaml               # Reproducible pnpm dependency lockfile
-├── pnpm-workspace.yaml          # Monorepo workspace configuration
-├── package.json                 # Monorepo root scripts and engines declaration
+├── Dockerfile                   # Multi-stage optimized Docker build
+├── docker-compose.yml           # Complete containerized stack with persistent volume
+├── CONTRIBUTING.md              # Community contribution guidelines & Conventional Commits
+├── CODE_OF_CONDUCT.md           # Contributor Covenant v2.1
+├── SECURITY.md                  # Vulnerability disclosure policy & HTTPS directive
 ├── LICENSE                      # MIT License
-├── README.md                    # English technical documentation
-└── README.es.md                 # Spanish documentation
+├── package.json                 # Project dependencies & scripts
+└── README.md                    # English technical documentation
 ```
-
----
-
-## 🛠 Tech Stack
-
-| Layer | Technologies |
-| --- | --- |
-| **Frontend** | React 18, Vite 5, React Router 7, Axios, CSS Modules / Custom Palette |
-| **Backend** | Node.js 22.13+, Express 4, Multer, Sharp, Mongoose 8, MongoDB Native Driver |
-| **Tooling & Monorepo** | pnpm 11 Workspace, ESLint 9, Node.js Test Runner |
-| **CI / DevOps** | GitHub Actions, Git |
 
 ---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- **Node.js**: `>= 22.0.0`
-- **pnpm**: `>= 11.0.0` (Install globally with `npm install -g pnpm` or `corepack enable`)
-- **MongoDB**: Local MongoDB instance or MongoDB Atlas cluster.
+- **Node.js**: >= 22.0.0
+- **pnpm**: >= 10.0.0
+- **MongoDB**: Local instance or MongoDB Atlas connection URI
 
-### 1. Clone the Repository
+### Installation
+
 ```bash
+# 1. Clone repository
 git clone https://github.com/aledash3/judith-hairstudio.git
 cd judith-hairstudio
-```
 
-### 2. Install Workspace Dependencies
-```bash
+# 2. Install dependencies
 pnpm install
-```
 
-### 3. Environment Configuration
-Create the backend environment file from the provided template:
-```bash
-# In backend/.env
-PORT=5000
-NODE_ENV=development
-CORS_ORIGIN=http://localhost:3000
-MONGO_URI=mongodb://localhost:27017/judith-hairstudio
-```
+# 3. Configure environment variables
+cp .env.example .env.local
 
-For the frontend, configure `frontend/.env`:
-```bash
-# In frontend/.env
-# Leave blank during local development to use the Vite reverse proxy
-VITE_API_URL=
-```
-
-### 4. Running the Application
-```bash
-# Run backend and frontend concurrently
+# 4. Start development server
 pnpm dev
-
-# Or run services independently
-pnpm dev:backend   # API on http://localhost:5000
-pnpm dev:frontend  # UI on http://localhost:3000
 ```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 🧪 Testing & Code Quality
-
-The monorepo includes automated unit tests, linting, and production build checks:
+## 🧪 Automated Testing & Code Quality
 
 ```bash
-# Run backend unit tests (Node.js native test runner)
+# Run all automated tests (Unit & API Integration)
 pnpm test
 
-# Run ESLint across frontend code
+# Run domain validation unit tests
+pnpm test:unit
+
+# Run Route Handler integration tests
+pnpm test:integration
+
+# Run code linter
 pnpm lint
 
-# Compile production build of frontend
+# Production build
 pnpm build
 ```
 
 ---
 
-## 🔌 RESTful API Reference
+## 🐳 Docker Deployment
 
-| HTTP Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| `GET` | `/health` | Service health status check |
-| `GET` | `/api/dashboard/metricas` | Aggregated dashboard analytics & revenue metrics |
-| `GET` | `/api/clientes` | Retrieve all registered clients |
-| `POST` | `/api/clientes` | Create a new client profile |
-| `GET` | `/api/clientes/:id` | Fetch client details and visit history |
-| `POST` | `/api/clientes/:id/visitas` | Record a new client appointment / visit |
-| `PUT` | `/api/clientes/:id` | Update client profile information |
-| `DELETE` | `/api/clientes/:id` | Remove a client profile |
-| `GET` | `/api/portafolio` | Fetch all portfolio entries |
-| `POST` | `/api/portafolio` | Upload a new portfolio transformation (with images) |
-| `PUT` | `/api/portafolio/:id` | Update portfolio entry details |
-| `DELETE` | `/api/portafolio/:id` | Delete a portfolio entry and its assets |
+A production-grade multi-stage `Dockerfile` and `docker-compose.yml` are included with named persistent volumes to ensure uploaded portfolio assets survive container rebuilds:
+
+```bash
+# Start application and MongoDB
+docker-compose up -d --build
+```
+
+---
+
+## 🛡️ Security & Privacy Notice
+
+This application is designed as a single-tenant administrative platform without multi-user roles.
+
+> ⚠️ **IMPORTANT SECURITY DIRECTIVE:**  
+> When deployed to a public server or VPS, **always activate `ENABLE_BASIC_AUTH=true` exclusively behind an HTTPS reverse proxy (Nginx, Caddy, or Cloudflare)**. Never expose Basic Auth over unencrypted HTTP.
 
 ---
 
 ## 👨‍💻 Author
 
-**David Alejandro Cruz Palacios**  
-Computer Science Engineering Student — Universidad Politécnica Salesiana  
-GitHub: [@aledash3](https://github.com/aledash3)
+Developed with ❤️ by **David Alejandro Cruz Palacios** ([@aledash3](https://github.com/aledash3)).
 
----
-
-## 📄 License
-
-This project is licensed under the terms of the [MIT License](LICENSE).
+Distributed under the **MIT License**. See `LICENSE` for more information.

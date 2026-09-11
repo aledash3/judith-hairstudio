@@ -1,79 +1,84 @@
-# 💇 Judith HairStudio — Sistema de Gestión para Salón de Belleza
+# 💇 Judith HairStudio — Sistema de Gestión y Portafolio para Salón de Belleza
 
 [![CI](https://img.shields.io/github/actions/workflow/status/aledash3/judith-hairstudio/ci.yml?branch=main&style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/aledash3/judith-hairstudio/actions)
-[![Node.js](https://img.shields.io/badge/Node.js-22.13+-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Next.js 15](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React 19](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-22+-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 [![pnpm](https://img.shields.io/badge/pnpm-11+-F69220?style=for-the-badge&logo=pnpm&logoColor=white)](https://pnpm.io/)
-[![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
-[![Express](https://img.shields.io/badge/Express-4-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
-[![Licencia: MIT](https://img.shields.io/badge/Licencia-MIT-yellow?style=for-the-badge)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 [![English](https://img.shields.io/badge/Language-English-blue?style=for-the-badge)](README.md)
 
-Sistema web Full-Stack MERN diseñado para la administración integral de peluquerías, salones de belleza y centros estéticos. Permite gestionar clientes, historial de visitas, control de ingresos, análisis de fidelización en un dashboard interactivo y un catálogo de transformaciones visuales optimizado en WebP con exportación para redes sociales.
+Aplicación web Full-Stack moderna diseñada para salones de belleza, peluquerías y centros estéticos. Desarrollada con **Next.js 15 (App Router)**, **TypeScript**, **Mongoose** y **Sharp**, centraliza la administración de clientas, registro de visitas e ingresos, analítica financiera en tiempo real y un portafolio de transformaciones capilares Antes/Después optimizado a WebP con exportador vertical para historias de Instagram y TikTok.
 
-> 🌐 **Language / Idioma:** Español | [Switch to English documentation](README.md)
+> 🌐 **Language / Idioma:** [Read in English](README.md) | Español
 
 ---
-
-## Alcance y verificación
-
-Proyecto académico/de portafolio. El repositorio documenta funciones, capturas de demostración y un workflow de CI; no afirma uso productivo validado. Antes de utilizar datos reales, deben verificarse accesos, archivos subidos, HTTPS, respaldos y configuración de despliegue. El requisito de Node.js se define en `engines.node` del `package.json` raíz: >=22.13.
 
 ## 🖥️ Interfaz de la Aplicación
 
-| Dashboard de Métricas | Directorio de Clientes |
+| Panel de Control (KPIs en Vivo) | Directorio de Clientas |
 | :---: | :---: |
 | ![Dashboard](docs/dashboard.png) | ![Clientes](docs/clientes.png) |
 
-| Detalle de Visitas | Portafolio de Transformaciones |
+| Ficha Individual de Clienta & Historial | Portafolio de Transformaciones (Antes/Después) |
 | :---: | :---: |
-| ![Detalle de cliente](docs/detalleclientes.png) | ![Portafolio](docs/portafolio.png) |
+| ![Detalle Clientes](docs/detalleclientes.png) | ![Portafolio](docs/portafolio.png) |
 
-> *Nota: Los datos visualizados en las capturas son ficticios y con fines ilustrativos.*
-
----
-
-## 📌 Funcionalidades
-
-### 👥 Gestión de Clientes y Visitas
-- Operaciones completas CRUD (Crear, Consultar, Actualizar y Eliminar) para clientes e historiales de visitas.
-- Identificador interno generado por MongoDB (`_id`), sin solicitar ni almacenar cédulas de identidad.
-- Validación estricta de números telefónicos móviles de Ecuador (exactamente 10 dígitos numéricos iniciando con `09`).
-- Soporte para números compartidos entre diferentes personas (por ejemplo, miembros de una misma familia).
-- Prevención de duplicados inteligente: solo se bloquea el registro si coinciden el nombre normalizado y el número de teléfono.
-- Registro detallado de visitas con validación de importes no negativos, servicios prestados y notas técnicas.
-
-### 📊 Dashboard de Métricas en Tiempo Real
-- Indicadores comerciales clave: total de clientes registrados, ingresos acumulados, número de visitas y ticket promedio.
-- Métricas agregadas con el ranking de servicios más solicitados e índices de recurrencia de clientes.
-- Gráficos y resúmenes para el seguimiento operativo diario y mensual del negocio.
-
-### 📸 Portafolio y Pipeline de Imágenes en WebP
-- Catálogo de transformaciones de antes y después categorizado por técnica de peinado o colorimetría.
-- Compresión y conversión automática en el servidor a formato WebP de alto rendimiento mediante la librería `sharp`.
-- Generador de composiciones verticales de alta calidad diseñadas para historias de Instagram y publicaciones en redes sociales.
+> *Nota: Las capturas muestran datos ficticios únicamente para fines demostrativos.*
 
 ---
 
-## 🏗 Arquitectura del Sistema
+## 📌 Características Principales
 
-El proyecto está estructurado como un **monorepo workspace con pnpm**, aplicando el patrón arquitectónico MVC con separación rigurosa de responsabilidades:
+### 👥 Gestión de Clientas y Visitas (Reglas de Negocio Ecuatorianas)
+- **Deep Linking Real:** Navegación directa a la ficha de cada clienta (`/clientes/[id]`) con historial cronológico, inversión acumulada y cálculo de ticket promedio.
+- **Validación Estricta de Teléfono:** Validación de celulares ecuatorianos de exactamente 10 dígitos iniciando con `09` (`^09\d{8}$`).
+- **Deduplicación Inteligente:** Permite números compartidos entre familiares y bloquea duplicados únicamente cuando coinciden nombre y celular normalizados.
+- **Integridad Financiera:** Bloqueo de montos negativos en cobro de servicios.
+
+### 📊 Dashboard Analítico en Tiempo Real
+- Filtro dinámico por período: **Hoy**, **Últimos 7 días** y **Últimos 30 días**.
+- Indicadores clave: ingresos totales, clientes registradas, servicios completados y trabajos en portafolio.
+- Ranking de servicios más solicitados (*Servicios Estrella*).
+
+### 📸 Pipeline de Imágenes con Sharp & Generador de Historias
+- **Arquitectura de Almacenamiento Desacoplada (`StorageProvider`):** Soporte mediante variable de entorno (`STORAGE_DRIVER`) para **Almacenamiento Local** (`public/uploads/`) o **Cloudinary CDN**.
+- **Compresión Server-Side:** Conversión y redimensión a WebP (800px ancho, calidad 80) utilizando Sharp bajo runtime explícito de Node.js.
+- **Exportador a Redes Sociales:** Generador HTML5 Canvas en resolución HD 9:16 (1080x1920) para descargar historias listas para Instagram y TikTok con marca de agua.
+
+---
+
+## 🏗️ Arquitectura del Sistema
 
 ```text
-React 18 + Vite (Frontend)
-    │
-    │  Cliente Axios / Proxy de desarrollo
-    ▼
-API REST con Express.js (Backend)
-    │
-    ├── Middlewares (Manejo de archivos Multer, errores centralizados, validadores)
-    ├── Routers (Enrutadores modulares por entidad)
-    ├── Controllers (Controladores de peticiones y respuestas HTTP)
-    ├── Services (Capa de lógica de negocio y validaciones de dominio)
-    └── Models (Esquemas de Mongoose e índices en MongoDB)
-    │
-    ▼
-MongoDB (Base de datos NoSQL)
+Next.js 15 App Router (Monolito Full-Stack)
+│
+├── Capa Frontend (React 19 + TypeScript)
+│   ├── Vistas App Router (/, /clientes, /clientes/[id], /portafolio)
+│   ├── Componentes y Navegación (components/Navbar.tsx)
+│   └── Estilos Profesionales (styles/custom-palette.css)
+│
+├── Capa Middleware (src/middleware.ts)
+│   └── HTTP Basic Auth opcional (ENABLE_BASIC_AUTH=true sobre HTTPS)
+│
+├── Capa API REST (Route Handlers - src/app/api/)
+│   ├── /api/clientes (GET, POST)
+│   ├── /api/clientes/[id] (GET, PUT, DELETE)
+│   ├── /api/clientes/[id]/visitas (POST)
+│   ├── /api/dashboard/metricas (GET)
+│   └── /api/portafolio (GET, POST, PUT, DELETE)
+│
+├── Capa de Dominio y Servicios (src/lib/)
+│   ├── Servicios de Dominio (clienteService, dashboardService, portafolioService)
+│   ├── Validadores de Entrada (clienteValidator, portafolioValidator)
+│   ├── Proveedores de Almacenamiento (LocalStorageProvider, CloudinaryStorageProvider)
+│   └── Conexión a Base de Datos (Mongoose Connection Singleton)
+│
+└── Base de Datos (MongoDB)
+    ├── Clientes (Índice Compuesto: { nombre: 1, whatsapp: 1 })
+    └── Portafolios
 ```
 
 ---
@@ -83,146 +88,108 @@ MongoDB (Base de datos NoSQL)
 ```text
 judith-hairstudio/
 ├── .github/
+│   ├── ISSUE_TEMPLATE/          # Plantillas de issues estructuradas (YAML)
+│   ├── PULL_REQUEST_TEMPLATE.md # Plantilla de PR
 │   └── workflows/
-│       └── ci.yml               # Pipeline de CI (pnpm install, test, lint, build)
-├── backend/
-│   ├── config/                  # Conexión a la base de datos (MongoDB / Mongoose)
-│   ├── controllers/             # Controladores de las rutas HTTP
-│   ├── middlewares/             # Subida de imágenes, manejador asíncrono y errores
-│   ├── models/                  # Modelos Mongoose (Cliente, Portafolio)
-│   ├── routers/                 # Definición de rutas de la API
-│   ├── scripts/                 # Scripts de migración (ej. remoción de índice único)
-│   ├── services/                # Lógica de negocio desacoplada
-│   ├── test/                    # Pruebas unitarias con el test runner nativo de Node.js
-│   ├── utils/                   # Clases y utilidades de errores HTTP
-│   ├── validators/              # Validadores de datos de entrada
-│   ├── package.json             # Dependencias y scripts del backend
-│   └── server.js                # Inicialización del servidor Express
-├── frontend/
-│   ├── src/
-│   │   ├── pages/               # Vistas (Clientes, Dashboard, Portafolio)
-│   │   ├── services/            # Cliente Axios centralizado
-│   │   ├── styles/              # Sistema de estilos y diseño personalizado
-│   │   ├── App.jsx              # Enrutador principal de React
-│   │   └── index.jsx            # Punto de entrada de la aplicación
-│   ├── index.html               # Plantilla SPA
-│   ├── package.json             # Dependencias y scripts del frontend
-│   └── vite.config.js           # Configuración de Vite y proxy de desarrollo
-├── docs/                        # Capturas de pantalla de la interfaz
-├── .gitignore                   # Reglas de exclusión para Git
-├── .npmrc                       # Reglas estrictas de dependencias y motores
-├── pnpm-lock.yaml               # Archivo de bloqueo reproducible de pnpm
-├── pnpm-workspace.yaml          # Declaración del espacio de trabajo pnpm
-├── package.json                 # Scripts globales y metadatos del monorepo
+│       └── ci.yml               # Flujo CI/CD automatizado
+├── public/
+│   └── uploads/                 # Almacenamiento local persistente de imágenes
+├── src/
+│   ├── app/                     # Vistas y Route Handlers (App Router)
+│   ├── components/              # Componentes visuales (Navbar, etc.)
+│   ├── lib/                     # Servicios, modelos Mongoose, storage y validadores
+│   ├── styles/                  # Paleta de estilos personalizada
+│   └── middleware.ts            # Capa de seguridad opcional (Basic Auth)
+├── test/
+│   ├── api-integration.test.ts  # Pruebas de integración de endpoints
+│   └── validators.test.ts       # Pruebas unitarias de validación
+├── scripts/
+│   ├── backup-db.sh             # Script de respaldo de base de datos (Linux/macOS)
+│   ├── backup-db.ps1            # Script de respaldo (Windows)
+│   ├── migrate-uploads-to-cloud.ts # Migración a Cloudinary
+│   └── verify-db-parity.ts      # Verificación de integridad de esquema
+├── docs/                        # Capturas de la interfaz
+├── Dockerfile                   # Dockerfile multi-stage optimizado
+├── docker-compose.yml           # Entorno de producción con volúmenes persistentes
+├── CONTRIBUTING.md              # Guía de contribución y Conventional Commits
+├── CODE_OF_CONDUCT.md           # Código de Conducta Contributor Covenant
+├── SECURITY.md                  # Política de reporte y directiva de seguridad HTTPS
 ├── LICENSE                      # Licencia MIT
-├── README.md                    # Documentación técnica en inglés
-└── README.es.md                 # Documentación pedagógica en español
+├── package.json                 # Dependencias y scripts
+└── README.es.md                 # Documentación técnica en español
 ```
 
 ---
 
-## 🛠 Tecnologías Utilizadas
+## 🚀 Puesta en Marcha Local
 
-| Capa | Tecnologías |
-| --- | --- |
-| **Frontend** | React 18, Vite 5, React Router 7, Axios, CSS Modules / Paleta personalizada |
-| **Backend** | Node.js 22.13+, Express 4, Multer, Sharp, Mongoose 8, MongoDB Driver |
-| **Gestión y Workspace** | pnpm 11 Workspace, ESLint 9, Node.js Native Test Runner |
-| **CI / DevOps** | GitHub Actions, Git |
+### Requisitos Previos
+- **Node.js**: >= 22.0.0
+- **pnpm**: >= 10.0.0
+- **MongoDB**: Instancia local o URI de conexión a MongoDB Atlas
 
----
+### Instalación y Ejecución
 
-## 🚀 Instalación y Despliegue Local
-
-### Requisitos previos
-- **Node.js**: versión 22 o superior.
-- **pnpm**: versión 11 o superior (`npm install -g pnpm` o vía `corepack enable`).
-- **MongoDB**: instancia local activa o clúster en MongoDB Atlas.
-
-### 1. Clonar el repositorio
 ```bash
+# 1. Clonar repositorio
 git clone https://github.com/aledash3/judith-hairstudio.git
 cd judith-hairstudio
-```
 
-### 2. Instalar dependencias del espacio de trabajo
-```bash
+# 2. Instalar dependencias
 pnpm install
-```
 
-### 3. Configuración de variables de entorno
-Crea el archivo `.env` en la carpeta `backend` a partir de la plantilla de ejemplo:
-```bash
-# En backend/.env
-PORT=5000
-NODE_ENV=development
-CORS_ORIGIN=http://localhost:3000
-MONGO_URI=mongodb://localhost:27017/judith-hairstudio
-```
+# 3. Configurar variables de entorno
+cp .env.example .env.local
 
-Para el frontend, puedes configurar `frontend/.env`:
-```bash
-# En frontend/.env
-# Dejar en blanco en desarrollo para aprovechar el proxy inverso de Vite
-VITE_API_URL=
-```
-
-### 4. Ejecución del sistema
-```bash
-# Ejecutar backend y frontend de forma simultánea
+# 4. Iniciar servidor de desarrollo
 pnpm dev
-
-# O ejecutarlos en terminales separadas
-pnpm dev:backend   # API disponible en http://localhost:5000
-pnpm dev:frontend  # Interfaz en http://localhost:3000
 ```
+
+Accede a [http://localhost:3000](http://localhost:3000) en tu navegador.
 
 ---
 
 ## 🧪 Pruebas Automatizadas y Calidad de Código
 
-El monorepo cuenta con verificación de pruebas unitarias, análisis estático y compilación:
-
 ```bash
-# Ejecutar pruebas unitarias del backend
+# Ejecutar todas las pruebas (Unitarias y de Integración)
 pnpm test
 
-# Ejecutar análisis de linter en el frontend
+# Ejecutar pruebas unitarias de validación
+pnpm test:unit
+
+# Ejecutar pruebas de integración de endpoints (Route Handlers)
+pnpm test:integration
+
+# Verificación estática con linter
 pnpm lint
 
-# Compilar build de producción del frontend
+# Compilación de producción
 pnpm build
 ```
 
 ---
 
-## 🔌 Referencia de la API REST
+## 🐳 Despliegue con Docker
 
-| Método | Endpoint | Descripción |
-| :--- | :--- | :--- |
-| `GET` | `/health` | Verificación de estado del servidor |
-| `GET` | `/api/dashboard/metricas` | Métricas generales del dashboard y análisis de ingresos |
-| `GET` | `/api/clientes` | Obtiene la lista completa de clientes |
-| `POST` | `/api/clientes` | Registra un nuevo cliente |
-| `GET` | `/api/clientes/:id` | Obtiene el detalle y visitas de un cliente |
-| `POST` | `/api/clientes/:id/visitas` | Registra una nueva visita para el cliente |
-| `PUT` | `/api/clientes/:id` | Actualiza los datos de un cliente |
-| `DELETE` | `/api/clientes/:id` | Elimina el registro de un cliente |
-| `GET` | `/api/portafolio` | Obtiene la lista de trabajos del portafolio |
-| `POST` | `/api/portafolio` | Sube un nuevo trabajo con imágenes |
-| `PUT` | `/api/portafolio/:id` | Actualiza la información de un trabajo |
-| `DELETE` | `/api/portafolio/:id` | Elimina un trabajo y sus recursos |
+El proyecto incluye un `Dockerfile` multi-stage optimizado y un `docker-compose.yml` con volumen persistente nombrado para salvaguardar las imágenes del portafolio entre actualizaciones:
+
+```bash
+# Iniciar contenedor de la app y base de datos
+docker-compose up -d --build
+```
+
+---
+
+## 🛡️ Aviso de Seguridad y Privacidad
+
+> ⚠️ **DIRECTIVA DE SEGURIDAD OBLIGATORIA:**  
+> Si la aplicación se publica en internet en un servidor VPS con IP pública, **activa `ENABLE_BASIC_AUTH=true` únicamente detrás de un proxy inverso con certificado HTTPS (Nginx, Caddy o Cloudflare)**. Nunca expongas la autenticación básica sobre HTTP plano.
 
 ---
 
 ## 👨‍💻 Autor
 
-**David Alejandro Cruz Palacios**  
-Estudiante de Ingeniería en Ciencias de la Computación — Universidad Politécnica Salesiana  
-GitHub: [@aledash3](https://github.com/aledash3)
+Desarrollado con dedicación por **David Alejandro Cruz Palacios** ([@aledash3](https://github.com/aledash3)).
 
----
-
-## 📄 Licencia
-
-Este proyecto se distribuye bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más información.
+Distribuido bajo la **Licencia MIT**. Consulta `LICENSE` para más detalles.

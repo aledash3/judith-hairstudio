@@ -1,0 +1,30 @@
+name: 💡 Solicitud de Mejora (Feature Request)
+description: Sugiere una nueva funcionalidad o mejora arquitectónica.
+title: "[FEAT]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ¿Tienes una propuesta para mejorar la gestión del salón o la arquitectura del proyecto? Cuéntanos tu propuesta.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema o Necesidad
+      description: ¿Qué necesidad del negocio o limitación técnica busca resolver esta propuesta?
+      placeholder: Actualmente el reporte diario no permite exportar a formato Excel/PDF...
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solución Propuesta
+      description: Describe cómo te gustaría que funcionara esta característica.
+      placeholder: Agregar un botón de exportación CSV en la vista del Dashboard...
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas Consideradas
+      description: ¿Has considerado otras soluciones o librerías?

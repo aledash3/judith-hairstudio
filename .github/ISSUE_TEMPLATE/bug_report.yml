@@ -1,0 +1,53 @@
+name: 🐛 Reporte de Error (Bug Report)
+description: Reporta un error reproducible en Judith HairStudio.
+title: "[BUG]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por tomarte el tiempo de reportar este problema. Por favor proporciona la información detallada para poder reproducirlo y solucionarlo rápidamente.
+  - type: textarea
+    id: description
+    attributes:
+      label: Descripción del Problema
+      description: Explica de forma concisa qué falló o qué comportamiento anómalo observaste.
+      placeholder: Al intentar registrar un cliente con teléfono válido...
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Pasos para Reproducir
+      description: Lista ordenada de pasos para replicar el fallo.
+      placeholder: |
+        1. Ir a '/clientes'
+        2. Llenar el formulario con '...'
+        3. Hacer clic en 'Registrar'
+        4. Observar el error...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportamiento Esperado
+      description: ¿Qué debería haber ocurrido?
+      placeholder: El cliente debería registrarse con código HTTP 201 y actualizar la tabla.
+    validations:
+      required: true
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Entorno de Ejecución
+      options:
+        - Desarrollo local (pnpm dev)
+        - Contenedor Docker (docker-compose)
+        - Despliegue en VPS (Node.js standalone)
+        - Despliegue en Vercel (Serverless)
+    validations:
+      required: true
+  - type: input
+    id: node_version
+    attributes:
+      label: Versión de Node.js / Navegador
+      placeholder: Node.js 22.x, Chrome 125, Safari Mobile...

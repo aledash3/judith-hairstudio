@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: judith-hairstudio-app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongodb:27017/judith-hairstudio
+      - STORAGE_DRIVER=local
+      - ENABLE_BASIC_AUTH=false
+    volumes:
+      - judith_uploads:/app/public/uploads
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:7-jammy
+    container_name: judith-hairstudio-mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - judith_mongodb_data:/data/db
+
+volumes:
+  judith_uploads:
+    name: judith_uploads
+    driver: local
+  judith_mongodb_data:
+    name: judith_mongodb_data
+    driver: local
