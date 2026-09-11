@@ -3,14 +3,18 @@ import assert from 'node:assert/strict';
 
 import { clienteService } from '../src/lib/services/clienteService';
 import { dashboardService } from '../src/lib/services/dashboardService';
+import { portafolioService } from '../src/lib/services/portafolioService';
 
 import { GET as getClientes, POST as postCliente } from '../src/app/api/clientes/route';
 import { GET as getClienteById, PUT as putCliente, DELETE as deleteCliente } from '../src/app/api/clientes/[id]/route';
 import { POST as postVisita } from '../src/app/api/clientes/[id]/visitas/route';
 import { GET as getDashboardMetricas } from '../src/app/api/dashboard/metricas/route';
+import { GET as getPortafolios } from '../src/app/api/portafolio/route';
+import { PUT as putPortafolio, DELETE as deletePortafolio } from '../src/app/api/portafolio/[id]/route';
 
 test('API Route Handlers - Integracion de Endpoints', async (t) => {
   const fakeClienteId = '65f1a2b3c4d5e6f7a8b9c0d1';
+  const fakePortafolioId = '65f1a2b3c4d5e6f7a8b9c0d2';
 
   // 1. POST /api/clientes (Validacion de telefono invalido)
   await t.test('POST /api/clientes rechaza telefono no ecuatoriano con 400', async () => {
@@ -197,5 +201,92 @@ test('API Route Handlers - Integracion de Endpoints', async (t) => {
     assert.equal(data.kpis.totalClientes, 42);
     assert.equal(data.kpis.ingresosTotales, 1850.50);
     assert.equal(data.serviciosTop.length, 2);
+  });
+
+  // 10. GET /api/portafolio
+  await t.test('GET /api/portafolio retorna lista de transformaciones con 200', async () => {
+    // @ts-ignore
+    mock.method(portafolioService, 'obtenerPortafolios', async () => [
+      {
+        _id: fakePortafolioId,
+        tipoServicio: 'Corte',
+        descripcion: 'Corte estilo mariposa',
+        fotoAntesUrl: '/uploads/antes-1.webp',
+        fotoDespuesUrl: '/uploads/despues-1.webp',
+        fechaCreacion: new Date()
+      }
+    ]);
+
+    const res = await getPortafolios();
+    assert.equal(res.status, 200);
+    const data = await res.json();
+    assert.equal(Array.isArray(data), true);
+    assert.equal(data[0].tipoServicio, 'Corte');
+  });
+
+  // 11. PUT /api/portafolio/[id] valida tipoServicio invalido
+  await t.test('PUT /api/portafolio/[id] rechaza tipoServicio invalido con 400', async () => {
+    const req = new Request(`http://localhost:3000/api/portafolio/${fakePortafolioId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tipoServicio: 'InvalidoTipo', descripcion: 'Test' })
+    });
+
+    const res = await putPortafolio(req, {
+      params: Promise.resolve({ id: fakePortafolioId })
+    });
+
+    assert.equal(res.status, 400);
+    const data = await res.json();
+    assert.ok(data.errores.some((e: string) => e.includes('tipo de servicio')));
+  });
+
+  // 12. PUT /api/portafolio/[id] actualiza exitosamente con 200
+  await t.test('PUT /api/portafolio/[id] actualiza metadatos y retorna 200', async () => {
+    // @ts-ignore
+    mock.method(portafolioService, 'actualizarPortafolio', async (id, datos) => ({
+      _id: id,
+      tipoServicio: datos.tipoServicio,
+      descripcion: datos.descripcion
+    }));
+
+    const req = new Request(`http://localhost:3000/api/portafolio/${fakePortafolioId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tipoServicio: 'Balayage', descripcion: 'Balayage rubio cenizo' })
+    });
+
+    // Balayage maps to 'Otros' or let's test with 'Keratina'
+    const reqValid = new Request(`http://localhost:3000/api/portafolio/${fakePortafolioId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tipoServicio: 'Keratina', descripcion: 'Tratamiento alisador' })
+    });
+
+    const res = await putPortafolio(reqValid, {
+      params: Promise.resolve({ id: fakePortafolioId })
+    });
+
+    assert.equal(res.status, 200);
+    const data = await res.json();
+    assert.equal(data.tipoServicio, 'Keratina');
+  });
+
+  // 13. DELETE /api/portafolio/[id]
+  await t.test('DELETE /api/portafolio/[id] elimina elemento y retorna 200', async () => {
+    // @ts-ignore
+    mock.method(portafolioService, 'eliminarPortafolio', async () => true);
+
+    const req = new Request(`http://localhost:3000/api/portafolio/${fakePortafolioId}`, {
+      method: 'DELETE'
+    });
+
+    const res = await deletePortafolio(req, {
+      params: Promise.resolve({ id: fakePortafolioId })
+    });
+
+    assert.equal(res.status, 200);
+    const data = await res.json();
+    assert.equal(data.mensaje, 'Elemento eliminado correctamente');
   });
 });
