@@ -45,3 +45,16 @@ Thumbs.db
 # ==========================
 backend/uploads/*
 !backend/uploads/.gitkeep
+
+# ==========================
+# Next.js
+# ==========================
+.next/
+out/
+next-env.d.ts
+
+# ==========================
+# Subidas publicas
+# ==========================
+public/uploads/*
+!public/uploads/.gitkeep
