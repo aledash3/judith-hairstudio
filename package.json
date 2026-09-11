@@ -1,21 +1,41 @@
 {
   "name": "judith-hairstudio",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
-  "packageManager": "pnpm@11.19.0",
-  "engines": {
-    "node": ">=22.13",
-    "pnpm": ">=11"
-  },
+  "type": "module",
   "scripts": {
-    "dev": "pnpm --parallel --filter ./backend --filter ./frontend dev",
-    "dev:backend": "pnpm --filter ./backend dev",
-    "dev:frontend": "pnpm --filter ./frontend dev",
-    "build": "pnpm --filter ./frontend build",
-    "lint": "pnpm --filter ./frontend lint",
-    "test": "pnpm --filter ./backend test"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "node --import tsx --test test/**/*.test.ts",
+    "test:unit": "node --import tsx --test test/validators.test.ts",
+    "test:integration": "node --import tsx --test test/api-integration.test.ts",
+    "db:verify": "node --import tsx scripts/verify-db-parity.ts"
   },
-  "description": "Full-stack beauty salon management web application built with React, Vite, Node.js, Express, and MongoDB in a pnpm workspace",
+  "dependencies": {
+    "mongoose": "^8.10.1",
+    "next": "^15.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
+    "@types/node": "^22.13.4",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "dotenv": "^16.4.7",
+    "eslint": "^9.20.1",
+    "eslint-config-next": "^15.2.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "description": "Full-stack beauty salon management web application engineered with Next.js 15 (App Router), TypeScript, Mongoose, and Sharp",
   "license": "MIT",
   "author": "David Alejandro Cruz Palacios"
 }

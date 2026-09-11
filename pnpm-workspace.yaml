@@ -1,9 +1,4 @@
-packages:
-  - backend
-  - frontend
-
-overrides:
-  qs: ">=6.16.0"
 allowBuilds:
   esbuild: true
   sharp: true
+  unrs-resolver: true
