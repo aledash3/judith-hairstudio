@@ -18,33 +18,21 @@ export class CloudinaryStorageProvider implements StorageProvider {
 
     const base64Data = buffer.toString('base64');
     const dataUri = `data:image/webp;base64,${base64Data}`;
-
-    const timestamp = Math.round(Date.now() / 1000);
     const cleanPublicId = filename.replace(/\.webp$/, '');
 
-    const crypto = await import('crypto');
-    const signatureStr = `public_id=${cleanPublicId}&timestamp=${timestamp}${this.apiSecret}`;
-    const signature = crypto.createHash('sha1').update(signatureStr).digest('hex');
-
-    const formData = new URLSearchParams();
-    formData.append('file', dataUri);
-    formData.append('api_key', this.apiKey);
-    formData.append('timestamp', timestamp.toString());
-    formData.append('public_id', cleanPublicId);
-    formData.append('signature', signature);
-
-    const res = await fetch(`https://api.cloudinary.com/v1_1/${this.cloudName}/image/upload`, {
-      method: 'POST',
-      body: formData
+    const { v2: cloudinary } = await import('cloudinary');
+    cloudinary.config({
+      cloud_name: this.cloudName,
+      api_key: this.apiKey,
+      api_secret: this.apiSecret
     });
 
-    if (!res.ok) {
-      const errorText = await res.text();
-      throw new Error(`Error al subir imagen a Cloudinary: ${errorText}`);
-    }
+    const result = await cloudinary.uploader.upload(dataUri, {
+      public_id: cleanPublicId,
+      resource_type: 'image'
+    });
 
-    const data = await res.json();
-    return data.secure_url;
+    return result.secure_url;
   }
 
   async delete(url: string): Promise<void> {
