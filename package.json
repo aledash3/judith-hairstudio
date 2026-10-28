@@ -2,6 +2,7 @@
   "name": "judith-hairstudio",
   "version": "2.0.0",
   "private": true,
+  "packageManager": "pnpm@11.25.0",
   "type": "module",
   "scripts": {
     "dev": "next dev",
