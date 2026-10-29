@@ -2,3 +2,8 @@ allowBuilds:
   esbuild: true
   sharp: true
   unrs-resolver: true
+
+overrides:
+  'postcss@<8.5.23': 8.5.23
+  'brace-expansion@<1.1.21': 1.1.21
+  'brace-expansion@>=4.0.0 <5.0.12': 5.0.12
